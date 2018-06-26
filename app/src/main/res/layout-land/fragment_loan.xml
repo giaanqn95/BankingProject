@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margin_padding_10dp"
+    android:paddingRight="@dimen/margin_padding_20dp"
+    android:paddingTop="@dimen/margin_padding_10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_button"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/ll_main">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/underlined"
+                android:text="@string/loan_details"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textv_loan_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_weight="0.7"
+                    android:paddingRight="@dimen/margin_padding_05dp"
+                    android:text="@string/loan_type"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_loan_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_marginLeft="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_toEndOf="@+id/textv_loan_type"
+                    android:background="@drawable/background_editext"
+                    android:drawableEnd="@drawable/ic_down_2"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                <TextView
+                    android:id="@+id/tv_loan_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/margin_padding_06dp"
+                    android:text="@string/loan_amount"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_loan_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_marginLeft="@dimen/margin_padding_20dp"
+                    android:layout_toEndOf="@+id/tv_loan_amount"
+                    android:background="@drawable/background_editext"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    android:inputType="number"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_loan_tenure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/margin_padding_05dp"
+                    android:text="@string/tenure"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_tenure"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_toEndOf="@+id/tv_loan_tenure"
+                    android:background="@drawable/background_editext"
+                    android:drawableEnd="@drawable/ic_down_2"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textv_loan_purpose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/margin_padding_05dp"
+                    android:text="@string/loan_purpose"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_marginLeft="@dimen/margin_padding_20dp"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_toEndOf="@+id/textv_loan_purpose"
+                    android:background="@drawable/background_editext"
+                    android:drawableEnd="@drawable/ic_down_2"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    android:id="@+id/tv_loan_purpose"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                <TextView
+                    android:id="@+id/tv_max_interset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/margin_padding_06dp"
+                    android:text="@string/loan_amount"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_max_interset"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_marginLeft="@dimen/margin_padding_20dp"
+                    android:layout_toEndOf="@+id/tv_max_interset"
+                    android:background="@drawable/background_editext"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    android:inputType="number"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/underlined"
+                android:text="@string/monthly_payments"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                <TextView
+                    android:id="@+id/tv_monthly_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_padding_10dp"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/margin_padding_06dp"
+                    android:text="@string/monthly_payment"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_monthly_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_padding_20dp"
+                    android:layout_toEndOf="@+id/tv_monthly_payment"
+                    android:background="@drawable/background_editext"
+                    android:paddingLeft="@dimen/margin_padding_05dp"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    android:inputType="number"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_padding_20dp">
+
+        <Button
+            android:id="@+id/btn_back_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_back" />
+
+        <Button
+            android:id="@+id/btn_next_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_next" />
+    </RelativeLayout>
+</RelativeLayout>

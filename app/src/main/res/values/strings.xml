@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">BankingProject</string>
+    <string name="soonupdated">No data</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_internet">Please check internet connection</string>
+    <string name="loading">Loading...</string>
+
+    <!--Dialog Message-->
+    <string name="dialog_title">Message</string>
+    <string name="signin_loading">Loading...</string>
+    <string name="dialog_button_confirm_no">No</string>
+    <string name="dialog_button_confirm_yes">Yes</string>
+    <string name="dialog_button_close">Close</string>
+    <!--End Dialog Message-->
+
+    <!--Login-->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="error_login_user">Enter your username</string>
+    <string name="error_login_password">Enter your password</string>
+    <string name="error_login_short_password">Password must be at least 8 characters</string>
+    <string name="error_login_fail">Username or Password invalid! Please try again.</string>
+    <!--End Login-->
+
+    <!--Welcome-->
+    <string name="welcome">Welcome Screen</string>
+    <string name="button_next">Next</string>
+    <string name="button_back">Back</string>
+    <!--End Welcome-->
+
+    <!--Loan Tab-->
+    <string name="loan_details">Loan Details</string>
+    <string name="loan_type">Loan Type</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="tenure">Tenure <annotation font="title_emphasis">(months)</annotation></string>
+    <string name="loan_purpose">Loan Purpose</string>
+    <string name="max_interster">Max. Interset</string>
+    <string name="monthly_payments">Monthly Payments</string>
+    <string name="monthly_payment">Monthly Payment</string>
+
+    <!--End Loan Tab-->
+
+    <!--Personal Tab-->
+    <string name="personal_information">Personal Information</string>
+    <string name="personal_name">Name</string>
+    <string name="personal_birth">Date of Birth</string>
+    <string name="personal_id">ID</string>
+    <string name="personal_issue">Date of Issue</string>
+    <string name="personal_education">Education</string>
+    <string name="personal_sex">Sex</string>
+    <string name="personal_married">Married Status</string>
+    <string name="personal_children"># of Childrens</string>
+    <string name="personal_date">Choose your date</string>
+    <!--End Personal Tab-->
+    
+    <!--Contact Tab-->
+    <string name="contact_details">Contact Details</string>
+    <string name="contact_permanent">Permanent Addr.</string>
+    <string name="contact_current">Current Addr.</string>
+    <string name="contact_mobile">Mobile</string>
+    <string name="contact_phone">Phone</string>
+    <string name="contact_email">Email</string>
+    <string name="reference_details">Reference Details</string>
+    <string name="reference_name">Reference Name</string>
+    <string name="reference_relationship">Relationship</string>
+    <!--End Contact Tab-->
+
+    <!--Employment Tab-->
+    <string name="employment_details">Employment Details</string>
+    <string name="employment_status">Working Status</string>
+    <string name="employmener">Employer</string>
+    <string name="employment_addr">Employer Addr.</string>
+    <string name="employment_company">Company type</string>
+    <string name="employment_industry">Industry</string>
+    <string name="employment_date_joined">Date joined</string>
+    <string name="incom_details">Incom Details</string>
+    <string name="incom_title">Title</string>
+    <string name="incom_salary">Salary</string>
+    <string name="incom_other">Other</string>
+    <string name="incom_total">Total Incom</string>
+    <!--End Employment Tab-->
+
+    <!--Upload-->
+    <string name="register_choose_image">The feature you want to use</string>
+    <array name="register_choose_photo">
+        <item>Camera</item>
+
+        <item>Cancel</item>
+    </array>
+    <string name="register_avatar">Picture gallery</string>
+    <!--End Upload-->
+
+    <!--Error -->
+    <string name="error_001">Time out!!!</string>
+    <string name="error_002">Api got problem</string>
+    <string name="error_empty">Please enter an empty</string>
+    <string name="error_checkbox">Please confirm your checkbox</string>
+    <!--End Error-->
+
+    <string name="take_picture">Take picture</string>
+</resources>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/margin_padding_10dp"
+    android:paddingRight="@dimen/margin_padding_20dp"
+    android:paddingTop="@dimen/margin_padding_10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/ll_main">
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:background="@drawable/underlined"-->
+                <!--android:text="@string/contact_details"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/space_60"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp"-->
+                <!--android:weightSum="1">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_permanent"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_permanent"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_permanent"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_11dp"-->
+                    <!--android:layout_marginTop="@dimen/margin_padding_05dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_permanent"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp">-->
+
+                <!--</EditText>-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_current"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_22dp"-->
+                    <!--android:layout_marginTop="@dimen/margin_padding_03dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_current"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_current"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_12dp"-->
+                    <!--android:layout_marginTop="@dimen/margin_padding_05dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_current"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_id"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_89dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/personal_id"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_id"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_15dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_id"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_mobile"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_60dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_mobile"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_mobile"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_15dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_mobile"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_phone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_63dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_phone"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_phone"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_14dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_phone"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_10dp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_email"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_67dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_email"-->
+                    <!--android:textColor="@color/black" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_email"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_15dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_email"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@drawable/underlined"-->
+                <!--android:text="@string/reference_details"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/space_60"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_15dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_name"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_11dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/reference_name"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="@dimen/text_size_mini_small_13sp" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_name"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_09dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_name"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="textPersonName"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/textv_relationship"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_34dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/reference_relationship"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="@dimen/text_size_mini_small_13sp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_relationship"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_12dp"-->
+                    <!--android:layout_toEndOf="@+id/textv_relationship"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:drawableEnd="@drawable/ic_down_2"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/margin_padding_10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_phone_reference"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_69dp"-->
+                    <!--android:layout_weight="0.7"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="@string/contact_phone"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="@dimen/text_size_mini_small_13sp" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/et_phone_reference"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/margin_padding_20dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin_padding_12dp"-->
+                    <!--android:layout_toEndOf="@+id/tv_phone_reference"-->
+                    <!--android:background="@drawable/background_editext"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:paddingLeft="@dimen/margin_padding_05dp"-->
+                    <!--android:textSize="@dimen/margin_padding_15dp"/>-->
+
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_padding_20dp"
+        android:id="@+id/rl_button">
+
+        <Button
+            android:id="@+id/btn_back_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_back" />
+
+        <Button
+            android:id="@+id/btn_next_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_next" />
+    </RelativeLayout>
+</RelativeLayout>

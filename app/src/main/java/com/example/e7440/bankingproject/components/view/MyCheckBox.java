@@ -22,10 +22,16 @@ public class MyCheckBox extends LinearLayout {
         checkBox.setTextColor(ContextCompat.getColor(ctx, R.color.colorAccent));
         checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
         this.addView(checkBox);
+        myTextView = new MyTextView(ctx, label, false);
+//        this.addView(myTextView);
     }
 
     public String isChecked() {
         return String.valueOf(checkBox.isChecked());
+    }
+
+    public String getLabel(){
+        return String.valueOf(checkBox.getText());
     }
 }
 

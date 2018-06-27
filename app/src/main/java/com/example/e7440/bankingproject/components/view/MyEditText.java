@@ -2,7 +2,6 @@ package com.example.e7440.bankingproject.components.view;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -14,7 +13,7 @@ import com.example.e7440.bankingproject.components.NumberTextWatcher;
 
 public class MyEditText extends LinearLayout {
     EditText editText = new EditText(getContext());
-    MyTextView tvLabel;
+    MyTextView myTextView;
 
     public MyEditText(Context ctx) {
         super(ctx);
@@ -31,8 +30,8 @@ public class MyEditText extends LinearLayout {
         editText.setBackground(getResources().getDrawable(R.drawable.background_editext));
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        tvLabel = new MyTextView(ctx, label, false);
-        this.addView(tvLabel);
+        myTextView = new MyTextView(ctx, label, false);
+        this.addView(myTextView);
 
         this.addView(editText);
     }
@@ -53,8 +52,8 @@ public class MyEditText extends LinearLayout {
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         editText.addTextChangedListener(new NumberTextWatcher(editText));
 
-        tvLabel = new MyTextView(ctx, label, false);
-        this.addView(tvLabel);
+        myTextView = new MyTextView(ctx, label, false);
+        this.addView(myTextView);
 
         this.addView(editText);
     }
@@ -71,8 +70,8 @@ public class MyEditText extends LinearLayout {
         editText.setBackground(getResources().getDrawable(R.drawable.background_editext));
         editText.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        tvLabel = new MyTextView(ctx, label, false);
-        this.addView(tvLabel);
+        myTextView = new MyTextView(ctx, label, false);
+        this.addView(myTextView);
 
         this.addView(editText);
     }
@@ -91,7 +90,7 @@ public class MyEditText extends LinearLayout {
     }
 
     public String getLabel(){
-        return tvLabel.getString();
+        return myTextView.getString();
     }
 
 }

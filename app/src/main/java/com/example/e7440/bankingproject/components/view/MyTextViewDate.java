@@ -62,4 +62,7 @@ public class MyTextViewDate extends LinearLayout{
     {
         return tvDate.getText().toString();
     }
+    public String getLabel() {
+        return myTextView.getString();
+    }
 }

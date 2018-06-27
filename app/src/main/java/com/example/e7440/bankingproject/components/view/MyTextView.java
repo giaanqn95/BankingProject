@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 public class MyTextView extends LinearLayout {
-    android.widget.TextView tvLabel;
+    android.widget.TextView mTextView;
 
     public MyTextView(Context context){
         super(context);
@@ -15,17 +15,17 @@ public class MyTextView extends LinearLayout {
 
     public MyTextView(Context context, String label, Boolean isBold) {
         super(context);
-        tvLabel = new android.widget.TextView(context);
-        tvLabel.setText(label);
-        tvLabel.setTextSize(18);
-        tvLabel.setGravity(Gravity.RIGHT);
+        mTextView = new android.widget.TextView(context);
+        mTextView.setText(label);
+        mTextView.setTextSize(18);
+        mTextView.setGravity(Gravity.RIGHT);
         if(isBold)
-            tvLabel.setTypeface(null, Typeface.BOLD);
-        tvLabel.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        this.addView(tvLabel);
+            mTextView.setTypeface(null, Typeface.BOLD);
+        mTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        this.addView(mTextView);
     }
 
     public String getString() {
-        return tvLabel.getText().toString();
+        return mTextView.getText().toString();
     }
 }

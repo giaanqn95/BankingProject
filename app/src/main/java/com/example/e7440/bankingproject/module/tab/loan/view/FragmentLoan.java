@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.e7440.bankingproject.R;
-import com.example.e7440.bankingproject.components.NumberTextWatcher;
 import com.example.e7440.bankingproject.components.view.MyCheckBox;
 import com.example.e7440.bankingproject.components.view.MyEditText;
 import com.example.e7440.bankingproject.components.view.MySpinner;
@@ -31,6 +30,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
+
 /**
  * Created by E7440 on 6/11/2018.
  */
@@ -50,7 +51,9 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     View rootView;
     private ArrayList<MyEditText> myEditTexts = new ArrayList<MyEditText>();
     private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
-    String test;
+    private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
+    private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
+    String data;
 
 
     public FragmentLoan() {
@@ -87,11 +90,15 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next_loan: {
-                if (checkEmptyEditText() == false) {
+                if (!checkEmptyEditText()) {
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                if (checkEmptyTextViewDate() == false) {
+                if (!checkEmptyTextViewDate()) {
+                    showDialogError(R.string.error_empty);
+                    return;
+                }
+                if (!checkBox()) {
                     showDialogError(R.string.error_empty);
                     return;
                 }
@@ -152,9 +159,11 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                 if (mTab.getColumn().equals("1")) {
                     MySpinner mySpinner = new MySpinner(getActivity(), mTab.getLabel(), mTab.getValue());
                     mLayoutLoan.addView(mySpinner, layoutParamsLoan);
+                    mySpinners.add(mySpinner);
                 } else {
                     MySpinner mySpinner = new MySpinner(getActivity(), mTab.getLabel(), mTab.getValue());
                     mLayoutMonthly.addView(mySpinner, layoutParamsLoan);
+                    mySpinners.add(mySpinner);
                 }
             }
             if (mTab.getType().equals("edittext")) {
@@ -208,15 +217,16 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                 if (mTab.getColumn().equals("1")) {
                     MyCheckBox myCheckBox = new MyCheckBox(getActivity(), mTab.getLabel());
                     mLayoutLoan.addView(myCheckBox, layoutParamsLoan);
+                    myCheckBoxes.add(myCheckBox);
                 } else if (mTab.getColumn().equals("2")) {
                     MyCheckBox myCheckBox = new MyCheckBox(getActivity(), mTab.getLabel());
                     mLayoutMonthly.addView(myCheckBox, layoutParamsLoan);
+                    myCheckBoxes.add(myCheckBox);
                 }
             }
         }
         mLinearLayout.addView(mLayoutLoan);
         mLinearLayout.addView(mLayoutMonthly);
-
     }
 
     private boolean checkEmptyEditText() {
@@ -243,11 +253,27 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
         return check;
     }
 
+    private boolean checkBox() {
+        String[] stringsCheckBox = new String[myCheckBoxes.size()];
+        Boolean check = true;
+        for (int i = 0; i < myCheckBoxes.size(); i++) {
+            stringsCheckBox[i] = myCheckBoxes.get(i).isChecked().toString();
+            if (stringsCheckBox[i].equals("false")) {
+                check = false;
+            }
+        }
+        return check;
+    }
+
     private void addData() {
         JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = null;
         String[] stringsEditText = new String[myEditTexts.size()];
+        String[] stringsSpinner = new String[mySpinners.size()];
+        String[] stringTextView = new String[myTextViewDates.size()];
+        String[] stringsCheckbox = new String[myCheckBoxes.size()];
         for (int i = 0; i < myEditTexts.size(); i++) {
-            JSONObject jsonObject = new JSONObject();
+            jsonObject = new JSONObject();
             try {
                 if (!myEditTexts.get(i).getValue().toString().equals("")) {
                     String value = stringsEditText[i] = myEditTexts.get(i).getValue().toString();
@@ -256,8 +282,41 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                 }
             } catch (Exception e) {
             }
-            test = String.valueOf(jsonArray.put(jsonObject));
+            jsonArray.put(jsonObject);
         }
-        Log.d("AAAAA", test);
+        for (int i = 0; i < mySpinners.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringsSpinner[i] = mySpinners.get(i).getValue().toString();
+                String name = stringsSpinner[i] = mySpinners.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+            }
+            jsonArray.put(jsonObject);
+        }
+        for (int i = 0; i < myCheckBoxes.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringsCheckbox[i] = myCheckBoxes.get(i).isChecked().toString();
+                String name = stringsCheckbox[i] = myCheckBoxes.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+            }
+            jsonArray.put(jsonObject);
+        }
+        for (int i = 0; i < myTextViewDates.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringTextView[i] = myTextViewDates.get(i).getValue().toString();
+                String name = stringTextView[i] = myTextViewDates.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+            }
+            jsonArray.put(jsonObject);
+        }
+        data = String.valueOf(jsonArray);
+        dataJSON += data + "\n";
+        Log.d("AAAAA", "" + data);
+//        EventBus.getDefault().postSticky(data);
     }
 }

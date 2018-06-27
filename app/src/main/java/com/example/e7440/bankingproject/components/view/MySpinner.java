@@ -40,4 +40,7 @@ public class MySpinner extends LinearLayout {
     {
         return spinner.getSelectedItem().toString();
     }
+    public String getLabel(){
+        return myTextView.getString();
+    }
 }

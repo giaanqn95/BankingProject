@@ -37,6 +37,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
+
 public class UploadActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.btn_back_loan)
@@ -70,6 +72,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         adapterClick();
         String imei = getUniqueIMEIId(this);
         Log.d("AAAAA", imei);
+        Log.d("JSONDATA", dataJSON);
     }
 
     private void init() {

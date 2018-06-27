@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    public static String dataJSON = "";
+
     @BindView(R.id.tb_main)
     TabLayout mTabLayout;
     @BindView(R.id.vp_main)

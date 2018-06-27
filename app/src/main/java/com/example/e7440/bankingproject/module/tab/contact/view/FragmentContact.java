@@ -1,6 +1,7 @@
 package com.example.e7440.bankingproject.module.tab.contact.view;
 
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,15 @@ import com.example.e7440.bankingproject.module.model.Item;
 import com.example.e7440.bankingproject.module.tab.contact.ContactGeneral;
 import com.example.e7440.bankingproject.module.tab.contact.presenter.ContactPresenterImpl;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
 
 /**
  * Created by E7440 on 6/14/2018.
@@ -35,24 +41,6 @@ import butterknife.BindView;
 
 public class FragmentContact extends BaseFragment implements ContactGeneral.ContactView {
 
-    //    @BindView(R.id.et_permanent)
-//    EditText mEditTextwPermanent;
-//    @BindView(R.id.et_current)
-//    EditText mEditTextCurrent;
-//    @BindView(R.id.et_id)
-//    EditText mEditTextId;
-//    @BindView(R.id.et_mobile)
-//    EditText mEditTextMobile;
-//    @BindView(R.id.et_phone)
-//    EditText mEditTextPhone;
-//    @BindView(R.id.et_email)
-//    EditText mEditTextEmail;
-//    @BindView(R.id.et_name)
-//    EditText mEditTextName;
-//    @BindView(R.id.tv_relationship)
-//    TextView mTextViewRelationship;
-//    @BindView(R.id.et_phone_reference)
-//    EditText mEditTextPhoneReference;
     @BindView(R.id.btn_back_loan)
     Button mButtonBack;
     @BindView(R.id.btn_next_loan)
@@ -63,11 +51,12 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     String url;
     private ContactPresenterImpl mContactPresenter;
     private List<DetailTab> mDetailTabs;
-    private List<Item> relationshipList;
     View rootView;
     private List<MyEditText> myEditTexts = new ArrayList<MyEditText>();
     private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
     private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
+    private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
+    String data;
 
     public FragmentContact() {
     }
@@ -83,14 +72,12 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
 
     @Override
     protected void setDataToUI() {
-        relationshipList = new ArrayList<>();
         mDetailTabs = new ArrayList<>();
         mLinearLayout.removeAllViews();
     }
 
     @Override
     protected void addActionClickListener() {
-//        mTextViewRelationship.setOnClickListener(this);
         mButtonBack.setOnClickListener(this);
         mButtonNext.setOnClickListener(this);
     }
@@ -118,14 +105,15 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                if (!checkEmptyTextViewDate()){
+                if (!checkEmptyTextViewDate()) {
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                if (!checkBox()){
+                if (!checkBox()) {
                     showDialogError(R.string.error_empty);
                     return;
                 }
+                addData();
                 ((MainActivity) getActivity()).setCurrentItem(3, true);
                 break;
             }
@@ -176,9 +164,11 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
                 if (mTab.getColumn().equals("1")) {
                     MySpinner mySpinner = new MySpinner(getActivity(), mTab.getLabel(), mTab.getValue());
                     mLayoutContact.addView(mySpinner, layoutParamsContact);
+                    mySpinners.add(mySpinner);
                 } else {
                     MySpinner mySpinner = new MySpinner(getActivity(), mTab.getLabel(), mTab.getValue());
                     mLayoutReference.addView(mySpinner, layoutParamsContact);
+                    mySpinners.add(mySpinner);
                 }
             }
             if (mTab.getType().equals("edittext")) {
@@ -253,6 +243,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
         }
         return check;
     }
+
     private boolean checkEmptyTextViewDate() {
         String[] stringTextView = new String[myTextViewDates.size()];
         Boolean check = true;
@@ -268,12 +259,69 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     private boolean checkBox() {
         String[] stringsCheckBox = new String[myCheckBoxes.size()];
         Boolean check = true;
-        for (int i = 0; i < myCheckBoxes.size(); i++){
+        for (int i = 0; i < myCheckBoxes.size(); i++) {
             stringsCheckBox[i] = myCheckBoxes.get(i).isChecked().toString();
-            if (stringsCheckBox[i].equals("false")){
+            if (stringsCheckBox[i].equals("false")) {
                 check = false;
             }
         }
         return check;
+    }
+
+    private void addData() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = null;
+        String[] stringsEditText = new String[myEditTexts.size()];
+        String[] stringsSpinner = new String[mySpinners.size()];
+        String[] stringTextView = new String[myTextViewDates.size()];
+        String[] stringsCheckbox = new String[myCheckBoxes.size()];
+        for (int i = 0; i < myEditTexts.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                if (!myEditTexts.get(i).getValue().toString().equals("")) {
+                    String value = stringsEditText[i] = myEditTexts.get(i).getValue().toString();
+                    String name = stringsEditText[i] = myEditTexts.get(i).getLabel().toString();
+                    jsonObject.put(name, value);
+                }
+            } catch (Exception e) {
+            }
+            jsonArray.put(jsonObject);
+        }
+        for (int i = 0; i < mySpinners.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringsSpinner[i] = mySpinners.get(i).getValue().toString();
+                String name = stringsSpinner[i] = mySpinners.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+            }
+            jsonArray.put(jsonObject);
+        }
+        for (int i = 0; i < myCheckBoxes.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringsCheckbox[i] = myCheckBoxes.get(i).isChecked().toString();
+                String name = stringsCheckbox[i] = myCheckBoxes.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+
+            }
+            jsonArray.put(jsonObject);
+
+        }
+        for (int i = 0; i < myTextViewDates.size(); i++) {
+            jsonObject = new JSONObject();
+            try {
+                String value = stringTextView[i] = myTextViewDates.get(i).getValue().toString();
+                String name = stringTextView[i] = myTextViewDates.get(i).getLabel().toString();
+                jsonObject.put(name, value);
+            } catch (Exception e) {
+            }
+           jsonArray.put(jsonObject);
+        }
+        data = String.valueOf(jsonArray);
+        dataJSON += data + "\n";
+        Log.d("AAAAA", "" + data);
+//        EventBus.getDefault().postSticky(data);
     }
 }

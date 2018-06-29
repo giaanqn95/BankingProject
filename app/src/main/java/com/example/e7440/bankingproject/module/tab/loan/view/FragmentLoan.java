@@ -54,6 +54,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
     private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
     String data;
+    String nameTab;
 
 
     public FragmentLoan() {
@@ -82,6 +83,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     @Override
     protected void initPresenter() {
         url = Config.getInstance().getmUrlList().get(0).getLink();
+        nameTab = Config.getInstance().getmToolbarsList().get(0).getName();
         mLoanPresenter = new LoanPresenterImpl(this);
         mLoanPresenter.getTab(url);
     }
@@ -107,7 +109,6 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                 break;
             }
             case R.id.btn_back_loan: {
-                int count = 0;
                 getActivity().finish();
                 break;
             }
@@ -315,8 +316,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
             jsonArray.put(jsonObject);
         }
         data = String.valueOf(jsonArray);
-        dataJSON += data + "\n";
-        Log.d("AAAAA", "" + data);
-//        EventBus.getDefault().postSticky(data);
+        dataJSON += nameTab + ":" + data + "," + "\n";
+        Log.d("AAAAA", dataJSON);
     }
 }

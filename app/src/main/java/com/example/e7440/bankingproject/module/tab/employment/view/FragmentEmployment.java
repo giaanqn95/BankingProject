@@ -64,6 +64,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
     private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
     String data;
+    String nameTab;
 
     public FragmentEmployment() {
     }
@@ -92,6 +93,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     @Override
     protected void initPresenter() {
         url = Config.getInstance().getmUrlList().get(3).getLink();
+        nameTab = Config.getInstance().getmToolbarsList().get(3).getName();
         mEmploymentPresenter = new EmploymentPresenterImpl(this);
         mEmploymentPresenter.getTab(url);
     }
@@ -322,7 +324,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
             jsonArray.put(jsonObject);
         }
         data = String.valueOf(jsonArray);
-        dataJSON += data + "\n";
+        dataJSON += nameTab + ":" + data + "\n";
         Log.d("AAAAA", "" + data);
 //        EventBus.getDefault().postSticky(data);
     }

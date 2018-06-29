@@ -57,6 +57,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
     private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
     String data;
+    String nameTab;
 
     public FragmentContact() {
     }
@@ -85,6 +86,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     @Override
     protected void initPresenter() {
         url = Config.getInstance().getmUrlList().get(2).getLink();
+        nameTab = Config.getInstance().getmToolbarsList().get(2).getName();
         mContactPresenter = new ContactPresenterImpl(this);
         mContactPresenter.getTab(url);
     }
@@ -317,10 +319,10 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
                 jsonObject.put(name, value);
             } catch (Exception e) {
             }
-           jsonArray.put(jsonObject);
+            jsonArray.put(jsonObject);
         }
         data = String.valueOf(jsonArray);
-        dataJSON += data + "\n";
+        dataJSON += nameTab + ":" + data + "," + "\n";
         Log.d("AAAAA", "" + data);
 //        EventBus.getDefault().postSticky(data);
     }

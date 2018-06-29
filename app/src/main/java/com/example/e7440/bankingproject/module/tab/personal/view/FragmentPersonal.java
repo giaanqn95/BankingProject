@@ -56,6 +56,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
     private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
     private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
     String data;
+    String nameTab;
 
     public FragmentPersonal() {
     }
@@ -85,6 +86,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
     @Override
     protected void initPresenter() {
         url = Config.getInstance().getmUrlList().get(1).getLink();
+        nameTab = Config.getInstance().getmToolbarsList().get(1).getName();
         mPersonalPresenter = new PersonalPresenterImpl(this);
         mPersonalPresenter.getTab(url);
     }
@@ -325,7 +327,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
             jsonArray.put(jsonObject);
         }
         data = String.valueOf(jsonArray);
-        dataJSON += data + "\n";
+        dataJSON += nameTab + ":" + data + "," + "\n";
         Log.d("AAAAA", "" + data);
 //        EventBus.getDefault().postSticky(data);
     }

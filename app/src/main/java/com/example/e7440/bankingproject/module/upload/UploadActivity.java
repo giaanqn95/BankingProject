@@ -1,16 +1,21 @@
 package com.example.e7440.bankingproject.module.upload;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,18 +59,19 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
     private List<Image> imageList;
     private ImageAdapter imageAdapter;
 
-    private static final int  CHOOSE_PLACES = 120, DIALOG_SHOW_IMAGE = 130, ACTIVITY_START_CAMERA_APP = 0;
+    private static final int CHOOSE_PLACES = 120, DIALOG_SHOW_IMAGE = 130, ACTIVITY_START_CAMERA_APP = 0, CAMERA_PIC_REQUEST = 100;
+    private static final String[] PERMISSIONS_CAMERA = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     private String GALLERY_LOCATION = "image gallery";
     private String mImageFileLocation = "";
-    private File mGalleryFolder;
     private Double mLat, mLng;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
-        createImageGallery();
         ButterKnife.bind(this);
         init();
         getUniqueIMEIId(this);
@@ -92,6 +98,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         imageAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
             @Override
             public void onClickListener(int position) {
+                deleteImage(imageList.get(position).getImage());
                 imageList.remove(position);
                 imageAdapter.notifyDataSetChanged();
             }
@@ -177,33 +184,54 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    private void createImageGallery() {
-        File storageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        mGalleryFolder = new File(storageDirectory, GALLERY_LOCATION);
-        if (!mGalleryFolder.exists()) {
-            mGalleryFolder.mkdirs();
+    private boolean verifyCamerapermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PIC_REQUEST);
+            return false;
         }
+        return true;
+    }
 
+    private boolean verifyOpenCamera() {
+        int camera = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (camera != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_CAMERA, CAMERA_PIC_REQUEST
+            );
+            return false;
+        }
+        return true;
     }
 
     public void takePhoto() {
         Intent callCameraApplicationIntent = new Intent();
         callCameraApplicationIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        File photoFile = null;
-        try {
-            photoFile = createImageFile();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (callCameraApplicationIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.e7440.bankingproject",
+                        photoFile);
+                verifyCamerapermission();
+                verifyOpenCamera();
+                callCameraApplicationIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(callCameraApplicationIntent, ACTIVITY_START_CAMERA_APP);
+            }
         }
-        callCameraApplicationIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-        startActivityForResult(callCameraApplicationIntent, ACTIVITY_START_CAMERA_APP);
+
     }
 
     File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "IMAGE_" + "_";
+        String imageFileName = "IMAGE";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
@@ -213,4 +241,36 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         return image;
     }
 
+    public void callBroadCast() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            Log.e("-->", " >= 14");
+            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().toString()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                /*
+                 *   (non-Javadoc)
+                 * @see android.media.MediaScannerConnection.OnScanCompletedListener#onScanCompleted(java.lang.String, android.net.Uri)
+                 */
+                public void onScanCompleted(String path, Uri uri) {
+                    Log.e("ExternalStorage", "Scanned " + path + ":");
+                    Log.e("ExternalStorage", "-> uri=" + uri);
+                }
+            });
+        } else {
+            Log.e("-->", " < 14");
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        }
+    }
+
+    public void deleteImage(String imageFile) {
+        String file_dj_path = Environment.getExternalStorageDirectory().getAbsolutePath() + imageFile;
+        File fdelete = new File(imageFile).getAbsoluteFile();
+        if (fdelete.exists()) {
+            if (fdelete.delete()) {
+                Log.e("aloola", "file Deleted :" + file_dj_path);
+                callBroadCast();
+            } else {
+                Log.e("aloola", "file not Deleted :" + file_dj_path);
+            }
+        }
+    }
 }

@@ -49,12 +49,13 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
 
     String url;
     View rootView;
-    private ArrayList<MyEditText> myEditTexts = new ArrayList<MyEditText>();
-    private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
-    private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
-    private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
-    String data;
-    String nameTab;
+    public static ArrayList<MyEditText> myEditTexts = new ArrayList<MyEditText>();
+    public static List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
+    public static List<MySpinner> mySpinners = new ArrayList<MySpinner>();
+    public static List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
+    static String data;
+    static String nameTab;
+    Boolean change = false;
 
 
     public FragmentLoan() {
@@ -105,7 +106,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                     return;
                 }
                 ((MainActivity) getActivity()).setCurrentItem(1, true);
-                addData();
+//                addData();
                 break;
             }
             case R.id.btn_back_loan: {
@@ -117,15 +118,18 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
 
     @Override
     public void fetchTab(List<DetailTab> mExampleList) {
-        mDetailTabs.clear();
-        mDetailTabs.addAll(mExampleList);
-        addView();
+        if (mExampleList.size() > 0) {
+            mDetailTabs.clear();
+            mDetailTabs.addAll(mExampleList);
+            addView();
+
+        }
     }
 
     public void addView() {
         LinearLayout.LayoutParams layoutParamsLoan = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsLoan.setMargins(10, 10, 10, 10);
+        layoutParamsLoan.setMargins(10, 0, 10, 10);
         LinearLayout.LayoutParams layoutParamsMonthly = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, (float) 0.5);
         layoutParamsMonthly.setMargins(10, 10, 10, 10);
@@ -266,7 +270,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
         return check;
     }
 
-    private void addData() {
+    public static void addData() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = null;
         String[] stringsEditText = new String[myEditTexts.size()];
@@ -319,4 +323,6 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
         dataJSON += nameTab + ":" + data + "," + "\n";
         Log.d("AAAAA", dataJSON);
     }
+
+
 }

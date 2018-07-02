@@ -20,7 +20,7 @@ public class MySpinner extends LinearLayout {
         super(ctx);
         spinner = new Spinner(getContext());
         LinearLayout.LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(0,10,0,0);
+        layoutParams.setMargins(0,0,0,5);
         spinner.setLayoutParams(layoutParams);
         spinner.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         String[] arr = value.split(",");

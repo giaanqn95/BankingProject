@@ -28,12 +28,14 @@ public class MyTextViewDate extends LinearLayout{
     public MyTextViewDate(Context ctx, String label, String content)
     {
         super(ctx);
+        LinearLayout.LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 0, 0, 10);
         tvDate = new TextView(getContext());
         tvDate.setTextSize(18);
         tvDate.setHint(content);
         tvDate.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
         tvDate.setGravity(Gravity.CENTER);
-        tvDate.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tvDate.setLayoutParams(layoutParams);
         final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         Calendar calendar = Calendar.getInstance();
         mDatePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {

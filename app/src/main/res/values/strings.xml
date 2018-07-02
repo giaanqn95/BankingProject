@@ -78,6 +78,7 @@
     <string name="incom_salary">Salary</string>
     <string name="incom_other">Other</string>
     <string name="incom_total">Total Incom</string>
+    <string name="confirm">Are you sure completed your information? If you choose yes, you must to do it again.</string>
     <!--End Employment Tab-->
 
     <!--Upload-->

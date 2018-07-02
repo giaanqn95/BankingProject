@@ -52,12 +52,12 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     private ContactPresenterImpl mContactPresenter;
     private List<DetailTab> mDetailTabs;
     View rootView;
-    private List<MyEditText> myEditTexts = new ArrayList<MyEditText>();
-    private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
-    private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
-    private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
-    String data;
-    String nameTab;
+    public static List<MyEditText> myEditTexts = new ArrayList<MyEditText>();
+    public static List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
+    public static List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
+    public static List<MySpinner> mySpinners = new ArrayList<MySpinner>();
+    static String data;
+    static String nameTab;
 
     public FragmentContact() {
     }
@@ -115,7 +115,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                addData();
+//                addData();
                 ((MainActivity) getActivity()).setCurrentItem(3, true);
                 break;
             }
@@ -136,7 +136,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
     public void addView() {
         LinearLayout.LayoutParams layoutParamsContact = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsContact.setMargins(10, 10, 10, 10);
+        layoutParamsContact.setMargins(10, 0, 10, 10);
         LinearLayout.LayoutParams layoutParamsReference = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, (float) 0.5);
         layoutParamsReference.setMargins(10, 10, 10, 10);
@@ -270,7 +270,7 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
         return check;
     }
 
-    private void addData() {
+    public static void addData() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = null;
         String[] stringsEditText = new String[myEditTexts.size()];

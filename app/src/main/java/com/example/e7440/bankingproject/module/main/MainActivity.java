@@ -74,6 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         }
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(4);
     }
 
     @Override

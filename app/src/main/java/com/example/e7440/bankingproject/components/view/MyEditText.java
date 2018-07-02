@@ -38,18 +38,18 @@ public class MyEditText extends LinearLayout {
 
     public MyEditText(Context ctx, String label, int type, Boolean money) {
         super(ctx);
-        LinearLayout.LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(0,10,0,0);
+        LinearLayout.LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 5, 0, 0);
         editText.setLayoutParams(layoutParams);
         editText.setInputType(type);
         editText.setTextSize(18);
-        editText.setHeight(80);
+//        editText.setHeight(50);
         editText.setGravity(Gravity.CENTER);
         editText.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
         editText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         editText.setPadding(0, 5, 0, 0);
         editText.setBackground(getResources().getDrawable(R.drawable.background_editext));
-        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         editText.addTextChangedListener(new NumberTextWatcher(editText));
 
         myTextView = new MyTextView(ctx, label, false);
@@ -89,7 +89,7 @@ public class MyEditText extends LinearLayout {
         return editText.getText().toString();
     }
 
-    public String getLabel(){
+    public String getLabel() {
         return myTextView.getString();
     }
 

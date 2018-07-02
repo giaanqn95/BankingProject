@@ -21,7 +21,9 @@ public class MyTextView extends LinearLayout {
         mTextView.setGravity(Gravity.RIGHT);
         if(isBold)
             mTextView.setTypeface(null, Typeface.BOLD);
-        mTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        LinearLayout.LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 0, 0, 15);
+        mTextView.setLayoutParams(layoutParams);
         this.addView(mTextView);
     }
 

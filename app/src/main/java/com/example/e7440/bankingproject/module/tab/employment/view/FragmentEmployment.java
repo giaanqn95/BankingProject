@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.TimeHelper;
+import com.example.e7440.bankingproject.components.message_dialog.DialogResultItem;
 import com.example.e7440.bankingproject.components.view.MyCheckBox;
 import com.example.e7440.bankingproject.components.view.MyEditText;
 import com.example.e7440.bankingproject.components.view.MySpinner;
@@ -25,8 +26,11 @@ import com.example.e7440.bankingproject.module.base.BaseFragment;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.main.MainActivity;
 import com.example.e7440.bankingproject.module.model.DetailTab;
+import com.example.e7440.bankingproject.module.tab.contact.view.FragmentContact;
 import com.example.e7440.bankingproject.module.tab.employment.EmploymentGeneral;
 import com.example.e7440.bankingproject.module.tab.employment.presenter.EmploymentPresenterImpl;
+import com.example.e7440.bankingproject.module.tab.loan.view.FragmentLoan;
+import com.example.e7440.bankingproject.module.tab.personal.view.FragmentPersonal;
 import com.example.e7440.bankingproject.module.upload.UploadActivity;
 
 import org.json.JSONArray;
@@ -54,8 +58,8 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     LinearLayout mLinearLayout;
 
     private List<DetailTab> mDetailTabs;
+    public static final int DIALOG_YESNO = 401;
 
-    private String joined;
     private String url;
     private EmploymentPresenterImpl mEmploymentPresenter;
     View rootView;
@@ -118,9 +122,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                addData();
-                Intent intent = new Intent(getActivity(), UploadActivity.class);
-                getActivity().startActivity(intent);
+                showDialogYesNo(401, getResources().getString(R.string.confirm));
                 break;
             }
         }
@@ -140,7 +142,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     public void addView() {
         LinearLayout.LayoutParams layoutParamsEmployment = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsEmployment.setMargins(10, 10, 10, 10);
+        layoutParamsEmployment.setMargins(10, 0, 10, 10);
         LinearLayout.LayoutParams layoutParamsIncom = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, (float) 0.5);
         layoutParamsIncom.setMargins(10, 10, 10, 10);
@@ -327,5 +329,31 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
         dataJSON += nameTab + ":" + data + "\n";
         Log.d("AAAAA", "" + data);
 //        EventBus.getDefault().postSticky(data);
+    }
+
+    @Override
+    public void onClickDialog(DialogResultItem dialogResulltItem) {
+        super.onClickDialog(dialogResulltItem);
+        switch (dialogResulltItem.getDialogId()){
+            case DIALOG_YESNO:{
+                switch (dialogResulltItem.getResultMessageDialog()){
+                    case MESSAGEDIALOG_BUTTON_YES:{
+                        FragmentLoan.addData();
+                        FragmentPersonal.addData();
+                        FragmentContact.addData();
+                        addData();
+                        Intent intent = new Intent(getActivity(), UploadActivity.class);
+                        getActivity().startActivity(intent);
+                        mMessageDialogManger.onDimiss();
+                        break;
+                    }
+                    case MESSAGEDIALOG_BUTTON_NO:{
+                        mMessageDialogManger.onDimiss();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
     }
 }

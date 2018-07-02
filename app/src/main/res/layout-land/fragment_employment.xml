@@ -3,335 +3,340 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/margin_padding_10dp"
-    android:paddingRight="@dimen/margin_padding_20dp"
-    android:paddingTop="@dimen/margin_padding_10dp">
+    android:paddingRight="@dimen/margin_padding_20dp">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/ll_main">
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_button">
 
         <LinearLayout
+            android:id="@+id/ll_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="@drawable/underlined"
-                android:text="@string/employment_details"
-                android:textColor="@color/black"
-                android:textSize="@dimen/space_60"
-                android:textStyle="bold" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp"
-                android:weightSum="1">
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_padding_04dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employment_status"
-                    android:textColor="@color/black" />
+                    android:layout_gravity="right"
+                    android:background="@drawable/underlined"
+                    android:text="@string/employment_details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/space_60"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_status"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_marginTop="@dimen/margin_padding_05dp"
-                    android:layout_toEndOf="@+id/tv_status"
-                    android:background="@drawable/background_editext"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:weightSum="1">
 
-                </EditText>
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_padding_04dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employment_status"
+                        android:textColor="@color/black" />
 
-            <RelativeLayout
+                    <EditText
+                        android:id="@+id/et_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_marginTop="@dimen/margin_padding_05dp"
+                        android:layout_toEndOf="@+id/tv_status"
+                        android:background="@drawable/background_editext"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp">
+
+                    </EditText>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                    <TextView
+                        android:id="@+id/tv_employer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_41dp"
+                        android:layout_marginTop="@dimen/margin_padding_03dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employmener"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/et_employer"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_toEndOf="@+id/tv_employer"
+                        android:background="@drawable/background_editext"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_05dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employment_addr"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/et_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_toEndOf="@+id/tv_address"
+                        android:background="@drawable/background_editext"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                    <TextView
+                        android:id="@+id/textv_issue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_10dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employment_company"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_toEndOf="@+id/textv_issue"
+                        android:background="@drawable/background_editext"
+                        android:drawableEnd="@drawable/ic_down_2"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                    <TextView
+                        android:id="@+id/textv_industry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_49dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employment_industry"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_industry"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_toEndOf="@+id/textv_industry"
+                        android:background="@drawable/background_editext"
+                        android:drawableEnd="@drawable/ic_down_2"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
+
+                    <TextView
+                        android:id="@+id/textv_joined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_31dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/employment_date_joined"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_joined"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_09dp"
+                        android:layout_toEndOf="@+id/textv_joined"
+                        android:background="@drawable/background_editext"
+                        android:drawableEnd="@drawable/ic_down_2"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_employer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_41dp"
-                    android:layout_marginTop="@dimen/margin_padding_03dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employmener"
-                    android:textColor="@color/black" />
+                    android:layout_gravity="right"
+                    android:background="@drawable/underlined"
+                    android:text="@string/incom_details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/space_60"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_employer"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_toEndOf="@+id/tv_employer"
-                    android:background="@drawable/background_editext"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_05dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employment_addr"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/margin_padding_15dp">
 
-                <EditText
-                    android:id="@+id/et_address"
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_76dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/incom_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_mini_small_13sp" />
+
+                    <EditText
+                        android:id="@+id/et_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_10dp"
+                        android:layout_toEndOf="@+id/tv_title"
+                        android:background="@drawable/background_editext"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_toEndOf="@+id/tv_address"
-                    android:background="@drawable/background_editext"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/textv_issue"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_10dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employment_company"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
 
-                <TextView
-                    android:id="@+id/tv_company"
+                    <TextView
+                        android:id="@+id/tv_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_66dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/incom_salary"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_mini_small_13sp" />
+
+                    <EditText
+                        android:id="@+id/et_salary"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_10dp"
+                        android:layout_toEndOf="@+id/tv_salary"
+                        android:background="@drawable/background_editext"
+                        android:inputType="phone"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_toEndOf="@+id/textv_issue"
-                    android:background="@drawable/background_editext"
-                    android:drawableEnd="@drawable/ic_down_2"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/textv_industry"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_49dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employment_industry"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
 
-                <TextView
-                    android:id="@+id/tv_industry"
+                    <TextView
+                        android:id="@+id/tv_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_70dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/incom_other"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_mini_small_13sp" />
+
+                    <EditText
+                        android:id="@+id/et_other"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_10dp"
+                        android:layout_toEndOf="@+id/tv_other"
+                        android:background="@drawable/background_editext"
+                        android:inputType="phone"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_toEndOf="@+id/textv_industry"
-                    android:background="@drawable/background_editext"
-                    android:drawableEnd="@drawable/ic_down_2"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/textv_joined"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_31dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/employment_date_joined"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/margin_padding_10dp">
 
-                <TextView
-                    android:id="@+id/tv_joined"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_09dp"
-                    android:layout_toEndOf="@+id/textv_joined"
-                    android:background="@drawable/background_editext"
-                    android:drawableEnd="@drawable/ic_down_2"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
+                    <TextView
+                        android:id="@+id/tv_total_incom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_padding_33dp"
+                        android:layout_weight="0.7"
+                        android:gravity="right"
+                        android:text="@string/incom_total"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_mini_small_13sp" />
 
-            </RelativeLayout>
-
+                    <EditText
+                        android:id="@+id/et_total_incom"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_padding_20dp"
+                        android:layout_marginLeft="@dimen/margin_padding_10dp"
+                        android:layout_toEndOf="@+id/tv_total_incom"
+                        android:background="@drawable/background_editext"
+                        android:inputType="phone"
+                        android:paddingLeft="@dimen/margin_padding_05dp"
+                        android:textSize="@dimen/margin_padding_15dp" />
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="@drawable/underlined"
-                android:text="@string/incom_details"
-                android:textColor="@color/black"
-                android:textSize="@dimen/space_60"
-                android:textStyle="bold" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_15dp">
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_76dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/incom_title"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_mini_small_13sp" />
-
-                <EditText
-                    android:id="@+id/et_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_10dp"
-                    android:layout_toEndOf="@+id/tv_title"
-                    android:background="@drawable/background_editext"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/tv_salary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_66dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/incom_salary"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_mini_small_13sp" />
-
-                <EditText
-                    android:id="@+id/et_salary"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_10dp"
-                    android:layout_toEndOf="@+id/tv_salary"
-                    android:background="@drawable/background_editext"
-                    android:inputType="phone"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/tv_other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_70dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/incom_other"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_mini_small_13sp" />
-
-                <EditText
-                    android:id="@+id/et_other"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_10dp"
-                    android:layout_toEndOf="@+id/tv_other"
-                    android:background="@drawable/background_editext"
-                    android:inputType="phone"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_10dp">
-
-                <TextView
-                    android:id="@+id/tv_total_incom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_padding_33dp"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:text="@string/incom_total"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_mini_small_13sp" />
-
-                <EditText
-                    android:id="@+id/et_total_incom"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_padding_20dp"
-                    android:layout_marginLeft="@dimen/margin_padding_10dp"
-                    android:layout_toEndOf="@+id/tv_total_incom"
-                    android:background="@drawable/background_editext"
-                    android:inputType="phone"
-                    android:paddingLeft="@dimen/margin_padding_05dp"
-                    android:textSize="@dimen/margin_padding_15dp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_button"

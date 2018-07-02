@@ -51,12 +51,12 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
     View rootView;
     String url;
     private PersonalPresenterImpl mPersonalPresenter;
-    private List<MyEditText> myEditTexts = new ArrayList<MyEditText>();
-    private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
-    private List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
-    private List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
-    String data;
-    String nameTab;
+    public static List<MyEditText> myEditTexts = new ArrayList<MyEditText>();
+    public static List<MySpinner> mySpinners = new ArrayList<MySpinner>();
+    public static List<MyTextViewDate> myTextViewDates = new ArrayList<MyTextViewDate>();
+    public static List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
+    static String data;
+    static String nameTab;
 
     public FragmentPersonal() {
     }
@@ -111,7 +111,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
                     showDialogError(R.string.error_empty);
                     return;
                 }
-                addData();
+//                addData();
                 ((MainActivity) getActivity()).setCurrentItem(2, true);
                 break;
             }
@@ -140,7 +140,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
     public void addView() {
         LinearLayout.LayoutParams layoutParamsImformation = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsImformation.setMargins(10, 10, 10, 10);
+        layoutParamsImformation.setMargins(10, 0, 10, 10);
 
         LinearLayout.LayoutParams layoutParamsPayments = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, (float) 0.5);
@@ -277,7 +277,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
         return check;
     }
 
-    private void addData() {
+    public static void addData() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = null;
         String[] stringsEditText = new String[myEditTexts.size()];

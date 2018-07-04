@@ -58,7 +58,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCkrIBetGMldShRuuf84sIVlAcZze0c94A" />
         <activity
-            android:name=".module.upload.UploadActivity"
+            android:name=".module.upload.view.UploadActivity"
             android:screenOrientation="landscape">
 
         </activity>

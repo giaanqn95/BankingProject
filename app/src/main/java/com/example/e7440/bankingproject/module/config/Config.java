@@ -1,6 +1,5 @@
 package com.example.e7440.bankingproject.module.config;
 
-import com.example.e7440.bankingproject.module.model.DetailTab;
 import com.example.e7440.bankingproject.module.model.Tab;
 import com.example.e7440.bankingproject.module.model.Toolbar;
 import com.example.e7440.bankingproject.module.model.Url;
@@ -29,6 +28,7 @@ public class Config {
         return instance;
     }
 
+    //Get data and save data from server
     public void saveData(Tab example) {
         if (example != null) {
             mUrlList.clear();

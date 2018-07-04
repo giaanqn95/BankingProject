@@ -3,11 +3,8 @@ package com.example.e7440.bankingproject.module.tab.loan.presenter;
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.connect_api.api.ApiFunction;
 import com.example.e7440.bankingproject.connect_api.api.ApiStatus;
-import com.example.e7440.bankingproject.connect_api.responses.BaseResponseList;
 import com.example.e7440.bankingproject.connect_api.responses.ResponseTool;
 import com.example.e7440.bankingproject.module.base.BasePresenter;
-import com.example.e7440.bankingproject.module.model.DetailTab;
-import com.example.e7440.bankingproject.module.model.Tab;
 import com.example.e7440.bankingproject.module.tab.loan.LoanGeneral;
 
 /**
@@ -31,14 +28,9 @@ public class LoanPresenterImpl extends BasePresenter<LoanGeneral.TabView> implem
                         break;
                     }
                     case CALL_API_RESULT_FAILURE: {
-//                        int errorCode = (int) object;
                         getmView().showDialogError(R.string.error_002);
                         break;
                     }
-//                    case CALL_API_RESULT_TIMEOUT:{
-//                        String error = (String) object;
-//                        break;
-//                    }
                 }
                 break;
             }

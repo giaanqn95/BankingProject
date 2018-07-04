@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.GooglePlaceAPI;
-import com.example.e7440.bankingproject.components.MovableFloatingActionButton;
 import com.example.e7440.bankingproject.components.SessionManagerUser;
 import com.example.e7440.bankingproject.module.base.BaseActivity;
 import com.example.e7440.bankingproject.module.config.Config;
@@ -44,7 +43,6 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
     TextView mTextView;
     private ConfigPresenterImpl mConfigPresenter;
     private Double lat,log;
-    MovableFloatingActionButton movableFloatingActionButton;
 
     private static final int REQUEST_CODE = 1002, CHOOSE_PLACE = 101;
     private static final String[] PERMISSIONS_LIST = {
@@ -60,7 +58,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduce_activity);
+        setContentView(R.layout.activity_introduce);
         ButterKnife.bind(this);
         init();
         verifyPermission();
@@ -121,6 +119,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    //Permission
     private boolean verifyPermission() {
         int camera = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (camera != PackageManager.PERMISSION_GRANTED) {
@@ -133,6 +132,9 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         }
         return true;
     }
+
+
+    //Get IMEI SIM
     public static String getUniqueIMEIId(Context context) {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);

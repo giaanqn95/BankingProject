@@ -1,6 +1,5 @@
 package com.example.e7440.bankingproject.module.tab.employment.view;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.text.InputType;
 import android.util.Log;
@@ -9,13 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.e7440.bankingproject.R;
-import com.example.e7440.bankingproject.components.TimeHelper;
 import com.example.e7440.bankingproject.components.message_dialog.DialogResultItem;
 import com.example.e7440.bankingproject.components.view.MyCheckBox;
 import com.example.e7440.bankingproject.components.view.MyEditText;
@@ -31,13 +26,12 @@ import com.example.e7440.bankingproject.module.tab.employment.EmploymentGeneral;
 import com.example.e7440.bankingproject.module.tab.employment.presenter.EmploymentPresenterImpl;
 import com.example.e7440.bankingproject.module.tab.loan.view.FragmentLoan;
 import com.example.e7440.bankingproject.module.tab.personal.view.FragmentPersonal;
-import com.example.e7440.bankingproject.module.upload.UploadActivity;
+import com.example.e7440.bankingproject.module.upload.view.UploadActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -111,18 +105,19 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
             }
             case R.id.btn_next_loan: {
                 if (!checkEmpty()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_editext);
                     return;
                 }
                 if (!checkEmptyTextViewDate()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_date);
                     return;
                 }
                 if (!checkBox()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_checkbox);
                     return;
                 }
-                showDialogYesNo(401, getResources().getString(R.string.confirm));
+                //If done, show dialog yesno with message
+                showDialogYesNo(DIALOG_YESNO, getResources().getString(R.string.confirm));
                 break;
             }
         }
@@ -328,7 +323,6 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
         data = String.valueOf(jsonArray);
         dataJSON += nameTab + ":" + data + "\n";
         Log.d("AAAAA", "" + data);
-//        EventBus.getDefault().postSticky(data);
     }
 
     @Override
@@ -345,6 +339,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
                         Intent intent = new Intent(getActivity(), UploadActivity.class);
                         getActivity().startActivity(intent);
                         mMessageDialogManger.onDimiss();
+                        getActivity().finish();
                         break;
                     }
                     case MESSAGEDIALOG_BUTTON_NO:{

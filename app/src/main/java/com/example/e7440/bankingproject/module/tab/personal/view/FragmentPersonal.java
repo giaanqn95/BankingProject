@@ -20,7 +20,6 @@ import com.example.e7440.bankingproject.module.base.BaseFragment;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.main.MainActivity;
 import com.example.e7440.bankingproject.module.model.DetailTab;
-import com.example.e7440.bankingproject.module.model.Item;
 import com.example.e7440.bankingproject.module.tab.personal.PersonalGeneral;
 import com.example.e7440.bankingproject.module.tab.personal.presenter.PersonalPresenterImpl;
 
@@ -100,15 +99,15 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
             }
             case R.id.btn_next_loan: {
                 if (!checkEmptyEditText()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_editext);
                     return;
                 }
                 if (!checkEmptyTextViewDate()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_date);
                     return;
                 }
                 if (!checkBox()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_checkbox);
                     return;
                 }
 //                addData();

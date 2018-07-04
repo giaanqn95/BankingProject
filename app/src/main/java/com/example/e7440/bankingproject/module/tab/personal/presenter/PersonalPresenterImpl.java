@@ -14,10 +14,10 @@ public class PersonalPresenterImpl extends BasePresenter<PersonalGeneral.Persona
 
     @Override
     public void onResponseListener(ApiFunction apiFunction, ApiStatus statusId, Object object) {
-        switch (apiFunction){
-            case GET_TAB_PERSONAL:{
-                switch (statusId){
-                    case CALL_API_RESULT_SUCCESS:{
+        switch (apiFunction) {
+            case GET_TAB_PERSONAL: {
+                switch (statusId) {
+                    case CALL_API_RESULT_SUCCESS: {
                         ResponseTool responseTool = (ResponseTool) object;
                         getmView().fetchTab(responseTool.getTab());
                         break;

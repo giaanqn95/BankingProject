@@ -1,17 +1,16 @@
-package com.example.e7440.bankingproject.module.upload;
+package com.example.e7440.bankingproject.module.upload.view;
 
 import android.Manifest;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -19,16 +18,20 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.message_dialog.DialogResultItem;
 import com.example.e7440.bankingproject.module.base.BaseActivity;
 import com.example.e7440.bankingproject.module.model.Image;
+import com.example.e7440.bankingproject.module.upload.adapter.ImageAdapter;
+import com.example.e7440.bankingproject.module.upload.adapter.StartSnapHelper;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
@@ -59,11 +62,16 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
     private List<Image> imageList;
     private ImageAdapter imageAdapter;
 
-    private static final int CHOOSE_PLACES = 120, DIALOG_SHOW_IMAGE = 130, ACTIVITY_START_CAMERA_APP = 0, CAMERA_PIC_REQUEST = 100;
+    private static final int CHOOSE_PLACES = 120,
+            DIALOG_SHOW_IMAGE = 130,
+            ACTIVITY_START_CAMERA_APP = 0,
+            CAMERA_PIC_REQUEST = 100;
     private static final String[] PERMISSIONS_CAMERA = {
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+
+    private boolean backPressedToExitOnce = false;
     private String GALLERY_LOCATION = "image gallery";
     private String mImageFileLocation = "";
     private Double mLat, mLng;
@@ -92,12 +100,18 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         mRecyclerView.setItemViewCacheSize(20);
         mRecyclerView.setDrawingCacheEnabled(true);
         mRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        //I don't know how to explain it :)) just remove it, you will understand :))
+        SnapHelper mSnapHelper = new StartSnapHelper();
+        mSnapHelper.attachToRecyclerView(mRecyclerView);
     }
 
+    //The click event created the adapter and override it
     public void adapterClick() {
         imageAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
             @Override
             public void onClickListener(int position) {
+                //remove item when click icon X
                 deleteImage(imageList.get(position).getImage());
                 imageList.remove(position);
                 imageAdapter.notifyDataSetChanged();
@@ -105,6 +119,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onClickImage(int position) {
+                //Open fullscreen image when click image item
                 showDialogImage(DIALOG_SHOW_IMAGE, imageList.get(position).getImage());
             }
         });
@@ -124,6 +139,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    //Create dialog
     public void imagePicker() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getResources().getString(R.string.register_choose_image)).setItems(R.array.register_choose_photo, new DialogInterface.OnClickListener() {
@@ -142,17 +158,29 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CHOOSE_PLACES) {
             if (resultCode == RESULT_OK) {
+                //Open google API Places
                 Place place = PlacePicker.getPlace(data, this);
                 String mLocation = String.format("%s", place.getAddress());
                 mLat = place.getLatLng().latitude;
                 mLng = place.getLatLng().longitude;
             }
         } else if (requestCode == ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
+            //Add image into list after capture
             image = new Image(mImageFileLocation);
             imageList.add(image);
             imageAdapter.notifyDataSetChanged();
         }
+    }
 
+    @Override
+    public void onClickDialog(DialogResultItem dialogResultItem) {
+        super.onClickDialog(dialogResultItem);
+        switch (dialogResultItem.getDialogId()) {
+            case DIALOG_SHOW_IMAGE: {
+                mMessageDialogManger.onDimiss();
+                break;
+            }
+        }
     }
 
     public static String getUniqueIMEIId(Context context) {
@@ -171,17 +199,6 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
             e.printStackTrace();
         }
         return "not_found";
-    }
-
-    @Override
-    public void onClickDialog(DialogResultItem dialogResultItem) {
-        super.onClickDialog(dialogResultItem);
-        switch (dialogResultItem.getDialogId()) {
-            case DIALOG_SHOW_IMAGE: {
-                mMessageDialogManger.onDimiss();
-                break;
-            }
-        }
     }
 
     private boolean verifyCamerapermission() {
@@ -204,6 +221,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         return true;
     }
 
+    //Open camera2 and create URI into memory device
     public void takePhoto() {
         Intent callCameraApplicationIntent = new Intent();
         callCameraApplicationIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -229,6 +247,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
 
     }
 
+    //Create link file
     File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "IMAGE";
@@ -241,6 +260,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         return image;
     }
 
+    //Refresh folder contains the image
     public void callBroadCast() {
         if (Build.VERSION.SDK_INT >= 14) {
             Log.e("-->", " >= 14");
@@ -261,6 +281,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    //No need  explain :))
     public void deleteImage(String imageFile) {
         String file_dj_path = Environment.getExternalStorageDirectory().getAbsolutePath() + imageFile;
         File fdelete = new File(imageFile).getAbsoluteFile();
@@ -272,5 +293,27 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
                 Log.e("aloola", "file not Deleted :" + file_dj_path);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedToExitOnce) {
+            super.onBackPressed();
+        } else {
+            this.backPressedToExitOnce = true;
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    backPressedToExitOnce = false;
+                }
+            }, 2000);
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 1000);
     }
 }

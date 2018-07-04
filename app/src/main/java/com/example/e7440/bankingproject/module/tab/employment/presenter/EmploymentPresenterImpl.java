@@ -15,10 +15,10 @@ public class EmploymentPresenterImpl extends BasePresenter<EmploymentGeneral.Emp
 
     @Override
     public void onResponseListener(ApiFunction apiFunction, ApiStatus statusId, Object object) {
-        switch (apiFunction){
-            case GET_TAB_EMPLOYMENT:{
-                switch (statusId){
-                    case CALL_API_RESULT_SUCCESS:{
+        switch (apiFunction) {
+            case GET_TAB_EMPLOYMENT: {
+                switch (statusId) {
+                    case CALL_API_RESULT_SUCCESS: {
                         ResponseTool responseTool = (ResponseTool) object;
                         getmView().fetchTab(responseTool.getTab());
                         break;

@@ -1,4 +1,4 @@
-package com.example.e7440.bankingproject.module.upload;
+package com.example.e7440.bankingproject.module.upload.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,15 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.module.model.Image;
-import com.squareup.picasso.Picasso;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder> {

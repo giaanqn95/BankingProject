@@ -94,7 +94,8 @@
     <!--Error -->
     <string name="error_001">Time out!!!</string>
     <string name="error_002">Api got problem</string>
-    <string name="error_empty">Please enter an empty</string>
+    <string name="error_empty_editext">Please enter an empty</string>
+    <string name="error_empty_date">Please choose your date</string>
     <string name="error_checkbox">Please confirm your checkbox</string>
     <!--End Error-->
 

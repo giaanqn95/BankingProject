@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.view.MyCheckBox;
@@ -21,7 +19,6 @@ import com.example.e7440.bankingproject.module.base.BaseFragment;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.main.MainActivity;
 import com.example.e7440.bankingproject.module.model.DetailTab;
-import com.example.e7440.bankingproject.module.model.Item;
 import com.example.e7440.bankingproject.module.tab.contact.ContactGeneral;
 import com.example.e7440.bankingproject.module.tab.contact.presenter.ContactPresenterImpl;
 
@@ -104,15 +101,15 @@ public class FragmentContact extends BaseFragment implements ContactGeneral.Cont
             }
             case R.id.btn_next_loan: {
                 if (!checkEmpty()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_editext);
                     return;
                 }
                 if (!checkEmptyTextViewDate()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_date);
                     return;
                 }
                 if (!checkBox()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_checkbox);
                     return;
                 }
 //                addData();

@@ -36,6 +36,8 @@ import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON
  * Created by E7440 on 6/11/2018.
  */
 
+//TODO: The code in the Tab package is the same, only the Employment is a little different
+
 public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
 
     @BindView(R.id.btn_back_loan)
@@ -55,7 +57,6 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     public static List<MyCheckBox> myCheckBoxes = new ArrayList<MyCheckBox>();
     static String data;
     static String nameTab;
-    Boolean change = false;
 
 
     public FragmentLoan() {
@@ -83,6 +84,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
 
     @Override
     protected void initPresenter() {
+        //Get link url and getData by url
         url = Config.getInstance().getmUrlList().get(0).getLink();
         nameTab = Config.getInstance().getmToolbarsList().get(0).getName();
         mLoanPresenter = new LoanPresenterImpl(this);
@@ -93,20 +95,21 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next_loan: {
+                //Check user entered the information or not, if not show dialog with message
                 if (!checkEmptyEditText()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_editext);
                     return;
                 }
                 if (!checkEmptyTextViewDate()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_empty_date);
                     return;
                 }
                 if (!checkBox()) {
-                    showDialogError(R.string.error_empty);
+                    showDialogError(R.string.error_checkbox);
                     return;
                 }
+                //If done swip next tab
                 ((MainActivity) getActivity()).setCurrentItem(1, true);
-//                addData();
                 break;
             }
             case R.id.btn_back_loan: {
@@ -127,6 +130,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     }
 
     public void addView() {
+        //Create 2 LinearLayout
         LinearLayout.LayoutParams layoutParamsLoan = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParamsLoan.setMargins(10, 0, 10, 10);
@@ -144,6 +148,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
         mLayoutMonthly.setLayoutParams(layoutParamsMonthly);
         mLayoutMonthly.setOrientation(LinearLayout.VERTICAL);
 
+        //Create view by type and column
         for (int i = 0; i < mDetailTabs.size(); i++) {
             DetailTab mTab = mDetailTabs.get(i);
             if (mTab.getType().equals("textviewColumn")) {
@@ -270,6 +275,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
         return check;
     }
 
+    //Add data into JsonObject and add all into JsonArray
     public static void addData() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = null;
@@ -320,9 +326,8 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
             jsonArray.put(jsonObject);
         }
         data = String.valueOf(jsonArray);
+        //add JsonArray into global variables created in MainActivity
         dataJSON += nameTab + ":" + data + "," + "\n";
         Log.d("AAAAA", dataJSON);
     }
-
-
 }

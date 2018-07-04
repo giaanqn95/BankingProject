@@ -15,15 +15,15 @@ public class ContactPresenterImpl extends BasePresenter<ContactGeneral.ContactVi
 
     @Override
     public void onResponseListener(ApiFunction apiFunction, ApiStatus statusId, Object object) {
-        switch (apiFunction){
-            case GET_TAB_CONTACT:{
-                switch (statusId){
-                    case CALL_API_RESULT_SUCCESS:{
+        switch (apiFunction) {
+            case GET_TAB_CONTACT: {
+                switch (statusId) {
+                    case CALL_API_RESULT_SUCCESS: {
                         ResponseTool responseTool = (ResponseTool) object;
                         getmView().fetchTab(responseTool.getTab());
                         break;
                     }
-                    case CALL_API_RESULT_FAILURE:{
+                    case CALL_API_RESULT_FAILURE: {
                         getmView().showDialogError(R.string.error_002);
                         break;
                     }

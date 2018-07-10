@@ -12,6 +12,10 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <application
@@ -35,12 +39,12 @@
             </meta-data>
         </provider>
 
-
         <activity
             android:name=".module.main.MainActivity"
             android:screenOrientation="landscape">
 
         </activity>
+
         <activity android:name=".module.login.LoginActivity">
 
         </activity>
@@ -53,6 +57,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".components.SchedulingService" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

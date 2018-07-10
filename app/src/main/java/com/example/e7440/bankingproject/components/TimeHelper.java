@@ -39,7 +39,7 @@ public class TimeHelper {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date date = simpleDateFormat.parse(strDate);
+            String date = simpleDateFormat.format(strDate);
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("HH:mm dd-MM-yyyy");
             formattedDate = simpleDateFormat2.format(date);
         } catch (Exception e) {

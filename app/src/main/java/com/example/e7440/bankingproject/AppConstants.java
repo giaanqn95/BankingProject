@@ -6,5 +6,6 @@ package com.example.e7440.bankingproject;
 
 public class AppConstants {
     public static String URL_CURRENT = "http://192.168.16.42/BankingLoan/";
+    public static final String KEY_TYPE = "type";
 
 }

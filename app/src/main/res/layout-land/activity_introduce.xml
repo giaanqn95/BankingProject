@@ -23,22 +23,40 @@
         android:textColor="@color/black"
         android:textSize="@dimen/font_108" />
 
+    <TextClock
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tv_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_welcome"
+        android:layout_marginTop="@dimen/margin_padding_10dp"
+        android:textSize="@dimen/margin_padding_20dp"
+        android:text="Click!!!"/>
+
     <Button
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="@string/button_next"
+        android:layout_marginBottom="@dimen/margin_padding_20dp"
         android:layout_marginRight="@dimen/margin_padding_20dp"
-        android:layout_marginBottom="@dimen/margin_padding_20dp"/>
+        android:text="@string/button_next" />
 
     <Button
+        android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_logout"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/margin_padding_20dp"
-        android:text="Log Out"/>
+        android:text="Log Out" />
 
 </RelativeLayout>

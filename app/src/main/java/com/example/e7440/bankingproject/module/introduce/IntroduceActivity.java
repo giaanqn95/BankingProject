@@ -14,8 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.e7440.bankingproject.R;
+import com.example.e7440.bankingproject.components.AlarmUtils;
 import com.example.e7440.bankingproject.components.GooglePlaceAPI;
 import com.example.e7440.bankingproject.components.SessionManagerUser;
+import com.example.e7440.bankingproject.components.TimeHelper;
 import com.example.e7440.bankingproject.module.base.BaseActivity;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.config.ConfigGeneral;
@@ -25,6 +27,10 @@ import com.example.e7440.bankingproject.module.main.MainActivity;
 import com.example.e7440.bankingproject.module.model.Tab;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +39,7 @@ import butterknife.ButterKnife;
  * Created by E7440 on 6/12/2018.
  */
 
-public class IntroduceActivity extends BaseActivity implements View.OnClickListener, ConfigGeneral.ConfigView {
+public class IntroduceActivity extends BaseActivity implements View.OnClickListener, ConfigGeneral.ConfigView, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     @BindView(R.id.btn_next)
     Button mButtonNext;
@@ -41,8 +47,11 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
     Button mButtonLogout;
     @BindView(R.id.tv_welcome)
     TextView mTextView;
+    @BindView(R.id.tv_datetime)
+    TextView mTextViewDateTime;
+
     private ConfigPresenterImpl mConfigPresenter;
-    private Double lat,log;
+    private Double lat, log;
 
     private static final int REQUEST_CODE = 1002, CHOOSE_PLACE = 101;
     private static final String[] PERMISSIONS_LIST = {
@@ -54,6 +63,10 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_PHONE_STATE
     };
+    public static String timeStart = "";
+    String date, time, timeSh;
+    public static int mYear, mMonth, mDay;
+    public static int mHour, mMinute, mSecond;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +76,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         init();
         verifyPermission();
         String imei = getUniqueIMEIId(this);
+
         Log.d("CCCCC", imei);
     }
 
@@ -72,6 +86,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         mButtonLogout.setOnClickListener(this);
         mButtonNext.setOnClickListener(this);
         mTextView.setOnClickListener(this);
+        mTextViewDateTime.setOnClickListener(this);
     }
 
     @Override
@@ -82,18 +97,23 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_logout:{
+            case R.id.btn_logout: {
                 SessionManagerUser.getInstance().logoutUser();
                 Intent intent = new Intent(IntroduceActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             }
-            case R.id.tv_welcome:{
+            case R.id.tv_welcome: {
                 mTextView.setEnabled(false);
                 GooglePlaceAPI.showGooglePlaces(IntroduceActivity.this, CHOOSE_PLACE);
                 break;
             }
+            case R.id.tv_datetime: {
+                showDate();
+                break;
+            }
+            default:
         }
     }
 
@@ -106,8 +126,8 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CHOOSE_PLACE){
-            if (resultCode ==  RESULT_OK){
+        if (requestCode == CHOOSE_PLACE) {
+            if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
                 String mLocation = String.format("%s", place.getAddress());
                 mTextView.setText(mLocation);
@@ -153,5 +173,45 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
             e.printStackTrace();
         }
         return "not_found";
+    }
+
+    public void showDate() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(IntroduceActivity.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        TimePickerDialog tpd = TimePickerDialog.newInstance(IntroduceActivity.this,
+                now.get(Calendar.HOUR + 1),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND), true);
+//        tpd.setMinTime(Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+        dpd.setMinDate(now);
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+        tpd.show(getFragmentManager(), "TimepickerDialog");
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth + " ";
+        mYear = year;
+        mMonth = monthOfYear;
+        mDay = dayOfMonth;
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        mHour = hourOfDay;
+        mMinute = minute;
+        mSecond = second;
+        timeSh = hourOfDay + ":" + minute;
+        time = TimeHelper.convertResultCalendarToDate(mYear, mMonth, mDay, hourOfDay, minute);
+        timeStart = time;
+        String timeShow = date + timeSh;
+        AlarmUtils.create(this);
+        mTextViewDateTime.setText(timeShow);
     }
 }

@@ -7,6 +7,8 @@ import com.example.e7440.bankingproject.module.model.User;
 
 import java.util.HashMap;
 
+import static com.example.e7440.bankingproject.module.introduce.IntroduceActivity.timeStart;
+
 public class SessionManagerUser {
 
     private static SessionManagerUser instance;
@@ -48,6 +50,7 @@ public class SessionManagerUser {
     public static final String KEY_UNIT = "unit";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_TIME = "timestart";
 
 
     /**
@@ -74,6 +77,7 @@ public class SessionManagerUser {
 //        editor.putString(KEY_LNG, String.valueOf(dataUser.getAddress().getCoordinates().getLng()));
         editor.putString(KEY_USERNAME, dataUser.getUsername());
         editor.putString(KEY_PASSWORD, dataUser.getPassword());
+        editor.putString(KEY_TIME, timeStart);
         // commit changes
         editor.commit();
     }
@@ -140,6 +144,10 @@ public class SessionManagerUser {
         data.put(KEY_UNIT, pref.getString(KEY_UNIT, "$"));
         // return data
         return data;
+    }
+
+    public String getTimeStart() {
+        return pref.getString(KEY_TIME, timeStart);
     }
 
     public String getUserToken() {

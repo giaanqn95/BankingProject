@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?><!--fillAfter  : Lưu kết quả của aim sau khi hoàn thành
+    startOffset: Thời gian đợi để thực hiện aim-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true">
+
+    <!-- Ẩn,Hiện   : <alpha/>
+        duration   : Thời gian hoàn thành aim
+        fromAlpha  : Ẩn (0 là hoàn toàn mất đi)
+        toAlpha    : Hiện, ngược lại
+        repeatCount: Số lần lặp lại aim, infinite là vô tận
+        repeatMode : Kiểu lặp-->
+
+    <!--Hiện-->
+    <alpha
+        android:duration="3000"
+        android:fromAlpha="0"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:toAlpha="1" />
+    <!--Ẩn-->
+    <alpha
+        android:duration="3000"
+        android:fromAlpha="1"
+        android:toAlpha="0" />
+
+    <!--Zoom      : <scale/>
+        fromXScale: Zoom từ X = ... ( =1 là hình dạng ban đầu) (hàng ngang)
+        toXScale  : Đến X = n (nếu n < 1 là thu nhỏ)(hàng ngang)
+        fromYScale: Zoom từ Y = ... (hàng dọc)
+        toYScale  : Zoom đến Y = n (hàng dọc)
+        pivotX    : Zoom ở vị trí hàng ngang của view (nếu x và y = 50% là ở giữa view)
+        pivotY    : Zoom ở vị trí hàng dọc của view-->
+
+    <!--Phóng to-->
+    <scale
+        android:duration="3000"
+        android:fromXScale="1"
+        android:fromYScale="1"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="3"
+        android:toYScale="3" />
+
+    <!--Thu nhỏ-->
+    <scale
+        android:duration="3000"
+        android:fromXScale="1"
+        android:fromYScale="1"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="0.5"
+        android:toYScale="0.5" />
+
+    <!--Di chuyển : <translate/>
+        fromXDelta: Di chuyển từ vị trí x theo chiều ngang (x = 0 là vị trí ban đầu)
+        toXDelta  : Di chuyển đến vị trí x (x>0 sang phải, ngược lại)
+        fromYDelta: Di chuyển từ vị trí y theo chiều dọc (y = 0 là vị trí ban đầu)
+        toYDelta  : Di chuyển đến vị trí y (x>0 đi lên, ngược lại)-->
+
+    <!--Di chuyển sang phải-->
+    <translate
+        android:duration="3000"
+        android:fromXDelta="0"
+        android:toXDelta="200" />
+
+    <!--Di chuyển sang trái-->
+    <translate
+        android:duration="3000"
+        android:fromXDelta="0"
+        android:toXDelta="-200" />
+
+    <!--Di chuyển lên-->
+    <translate
+        android:duration="3000"
+        android:fromYDelta="0"
+        android:toYDelta="200" />
+
+    <!--Di chuyển xuống-->
+    <translate
+        android:duration="3000"
+        android:fromYDelta="0"
+        android:toYDelta="-200" />
+
+    <!--Xoay       : <rotate/>
+        fromDegrees: Tọa độ ban đầu
+        toDegrees  : Tọa độ khi xoay đến (nếu >0 xoay phải, ngược lại)-->
+
+    <!--Xoay 360-->
+    <rotate
+        android:duration="3000"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="360" />
+
+    <!--Kết hợp aim ẩn hiện sau đó 3s(startOffset) di chuyển
+        Nếu muốn aim thực hiện cùng lúc thì bỏ starOffset-->
+    <alpha
+        android:duration="1000"
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+    <translate
+        android:duration="3000"
+        android:fromXDelta="0"
+        android:startOffset="3000"
+        android:toXDelta="200" />
+
+</set>

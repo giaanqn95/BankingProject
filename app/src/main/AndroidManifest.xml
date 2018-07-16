@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".components.SchedulingService" />
+        <service android:name=".components.alarm_notification.SchedulingService" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_padding_20dp"
+    android:background="@color/color_item"
+    android:padding="@dimen/margin_padding_20dp"
+    android:id="@+id/item_schedules">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_item_avatar"
+        android:layout_width="@dimen/margin_padding_50dp"
+        android:layout_height="@dimen/margin_padding_50dp"
+        android:src="@drawable/avatar" />
+
+    <TextView
+        android:id="@+id/tv_item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="@dimen/margin_padding_07dp"
+        android:text="Trần Đỗ Gia Ân"
+        android:textColor="@color/blue_500"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_item_avatar" />
+
+    <TextView
+        android:id="@+id/tv_item_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_padding_10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="86 Trần Hưng Đạo, Tp.Quy Nhơn, T.Bình Định"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/margin_padding_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_item_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
+
+</android.support.constraint.ConstraintLayout>

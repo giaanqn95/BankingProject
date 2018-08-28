@@ -23,6 +23,7 @@ import com.example.e7440.bankingproject.module.tab.loan.LoanGeneral;
 import com.example.e7440.bankingproject.module.tab.loan.presenter.LoanPresenterImpl;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     LinearLayout mLinearLayout;
     private LoanPresenterImpl mLoanPresenter;
     private List<DetailTab> mDetailTabs;
+    public static JSONObject jsonObjectToTal = new JSONObject();
 
     String url;
     View rootView;
@@ -108,6 +110,7 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                     showDialogError(R.string.error_checkbox);
                     return;
                 }
+                addData();
                 //If done swip next tab
                 ((MainActivity) getActivity()).setCurrentItem(1, true);
                 break;
@@ -157,11 +160,6 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
                     mLayoutLoan.addView(mTextViewTitles, layoutParamsLoan);
                 } else {
                     MyTextView mTextViewTitles = new MyTextView(getActivity(), mTab.getLabel(), true);
-//                    TextView mTextViewTitles = new TextView(getActivity());
-//                    mTextViewTitles.setText(mTab.getLabel());
-//                    mTextViewTitles.setGravity(Gravity.CENTER_HORIZONTAL);
-//                    mTextViewTitles.setTextSize(18);
-//                    mTextViewTitles.setTypeface(Typeface.DEFAULT_BOLD);
                     mLayoutMonthly.addView(mTextViewTitles);
                 }
             }
@@ -276,58 +274,51 @@ public class FragmentLoan extends BaseFragment implements LoanGeneral.TabView {
     }
 
     //Add data into JsonObject and add all into JsonArray
-    public static void addData() {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = null;
+    public void addData() {
+
+        JSONObject jsonObject = new JSONObject();
         String[] stringsEditText = new String[myEditTexts.size()];
         String[] stringsSpinner = new String[mySpinners.size()];
         String[] stringTextView = new String[myTextViewDates.size()];
         String[] stringsCheckbox = new String[myCheckBoxes.size()];
         for (int i = 0; i < myEditTexts.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 if (!myEditTexts.get(i).getValue().toString().equals("")) {
                     String value = stringsEditText[i] = myEditTexts.get(i).getValue().toString();
                     String name = stringsEditText[i] = myEditTexts.get(i).getLabel().toString();
                     jsonObject.put(name, value);
+                    jsonObjectToTal.put(nameTab, jsonObject);
                 }
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < mySpinners.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsSpinner[i] = mySpinners.get(i).getValue().toString();
                 String name = stringsSpinner[i] = mySpinners.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myCheckBoxes.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsCheckbox[i] = myCheckBoxes.get(i).isChecked().toString();
                 String name = stringsCheckbox[i] = myCheckBoxes.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myTextViewDates.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringTextView[i] = myTextViewDates.get(i).getValue().toString();
                 String name = stringTextView[i] = myTextViewDates.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
-        data = String.valueOf(jsonArray);
-        //add JsonArray into global variables created in MainActivity
-        dataJSON += nameTab + ":" + data + "," + "\n";
-        Log.d("AAAAA", dataJSON);
+        data = String.valueOf(jsonObjectToTal);
     }
 }

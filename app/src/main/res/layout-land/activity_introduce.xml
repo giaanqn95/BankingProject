@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_padding_30dp"
+        android:layout_marginTop="@dimen/margin_padding_40dp"
         android:layout_toEndOf="@+id/iv_avatar"
         android:gravity="center"
         android:paddingRight="@dimen/margin_padding_50dp"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/margin_padding_20dp"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="40sp" />
 
@@ -38,18 +38,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_welcome"
         android:layout_marginTop="@dimen/margin_padding_10dp"
+        android:text="Click!!!"
         android:textSize="@dimen/margin_padding_20dp"
-        android:text="Click!!!"/>
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/margin_padding_110dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/margin_padding_20dp"
         android:layout_marginRight="@dimen/margin_padding_20dp"
-        android:text="@string/button_next" />
+        android:text="@string/button_create" />
 
     <Button
         android:id="@+id/btn_logout"
@@ -58,5 +59,14 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/margin_padding_20dp"
         android:text="Log Out" />
+
+    <Button
+        android:id="@+id/btn_schedules"
+        android:layout_width="@dimen/margin_padding_110dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_next"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/margin_padding_20dp"
+        android:text="@string/button_schedule" />
 
 </RelativeLayout>

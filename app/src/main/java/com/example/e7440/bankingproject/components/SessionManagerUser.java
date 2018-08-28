@@ -49,7 +49,11 @@ public class SessionManagerUser {
     public static final String KEY_LNG = "lng";
     public static final String KEY_UNIT = "unit";
     public static final String KEY_USERNAME = "username";
-    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_ENXTENSION = "extension";
+    public static final String KEY_ISSUPERVISOR = "issupervisor";
+    public static final String KEY_ISADMIN = "isadmin";
+    public static final String KEY_AGMENTNAME = "agentname";
+    public static final String KEY_X_CRM = "x_crm";
     public static final String KEY_TIME = "timestart";
 
 
@@ -76,7 +80,11 @@ public class SessionManagerUser {
 //        editor.putString(KEY_LAT, String.valueOf(dataUser.getAddress().getCoordinates().getLat()));
 //        editor.putString(KEY_LNG, String.valueOf(dataUser.getAddress().getCoordinates().getLng()));
         editor.putString(KEY_USERNAME, dataUser.getUsername());
-        editor.putString(KEY_PASSWORD, dataUser.getPassword());
+        editor.putString(KEY_ENXTENSION, dataUser.getExtension());
+        editor.putString(KEY_ISSUPERVISOR, dataUser.getIssupervisor());
+        editor.putString(KEY_ISADMIN, dataUser.getIsadmin());
+        editor.putString(KEY_AGMENTNAME, dataUser.getAgentname());
+        editor.putString(KEY_X_CRM, dataUser.getX_crm());
         editor.putString(KEY_TIME, timeStart);
         // commit changes
         editor.commit();
@@ -119,6 +127,12 @@ public class SessionManagerUser {
         editor.remove(KEY_TOKEN);
         editor.remove(KEY_LAT);
         editor.remove(KEY_LNG);
+        editor.remove(KEY_USERNAME);
+        editor.remove(KEY_ENXTENSION);
+        editor.remove(KEY_ISSUPERVISOR);
+        editor.remove(KEY_ISADMIN);
+        editor.remove(KEY_AGMENTNAME);
+        editor.remove(KEY_X_CRM);
         editor.commit();
     }
 
@@ -142,6 +156,12 @@ public class SessionManagerUser {
         data.put(KEY_LAT, pref.getString(KEY_LAT, "0"));
         data.put(KEY_LNG, pref.getString(KEY_LNG, "0"));
         data.put(KEY_UNIT, pref.getString(KEY_UNIT, "$"));
+        data.put(KEY_ENXTENSION, pref.getString(KEY_ENXTENSION, ""));
+        data.put(KEY_USERNAME, pref.getString(KEY_USERNAME, ""));
+        data.put(KEY_ISSUPERVISOR, pref.getString(KEY_ISSUPERVISOR, ""));
+        data.put(KEY_ISADMIN, pref.getString(KEY_ISADMIN, ""));
+        data.put(KEY_AGMENTNAME, pref.getString(KEY_AGMENTNAME, ""));
+        data.put(KEY_X_CRM, pref.getString(KEY_X_CRM, ""));
         // return data
         return data;
     }

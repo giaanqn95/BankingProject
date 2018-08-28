@@ -10,6 +10,7 @@
 
     <dimen name="size_button_close">36dp</dimen>
     <dimen name="size_float_button">56dp</dimen>
+    <dimen name="margin_padding_02dp">2dp</dimen>
     <dimen name="margin_padding_03dp">3dp</dimen>
     <dimen name="margin_padding_04dp">4dp</dimen>
     <dimen name="margin_padding_05dp">5dp</dimen>
@@ -70,7 +71,9 @@
     <dimen name="margin_padding_87dp">87dp</dimen>
     <dimen name="margin_padding_88dp">88dp</dimen>
     <dimen name="margin_padding_89dp">89dp</dimen>
+    <dimen name="margin_padding_110dp">110dp</dimen>
     <dimen name="margin_padding_130dp">130dp</dimen>
+    <dimen name="margin_padding_150dp">150dp</dimen>
     <dimen name="margin_padding_162dp">162dp</dimen>
     <dimen name="margin_padding_165dp">165dp</dimen>
     <dimen name="margin_padding_170dp">170dp</dimen>
@@ -235,4 +238,6 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>

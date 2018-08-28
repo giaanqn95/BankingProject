@@ -24,6 +24,7 @@
     <color name="color_text_profile">#333333</color>
     <color name="color_line_view">#C0C0C0</color>
 
+
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
     <color name="red_200">#EF9A9A</color>
@@ -310,4 +311,10 @@
         <item>@color/white</item>
     </array>
     <color name="color_trasparent">#D9219653</color>
+
+    <color name="color_waiting">#FBDF26</color>
+    <color name="color_progress">#FB6026</color>
+    <color name="color_done">#1CB231</color>
+    <color name="color_item">#F1F9FF</color>
+
 </resources>

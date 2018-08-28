@@ -65,12 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //Disable click TabView API>19
         LinearLayout tabStrip = ((LinearLayout) mTabLayout.getChildAt(0));
         for (int i = 0; i < tabStrip.getChildCount(); i++) {
-            tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return true;
-                }
-            });
+            tabStrip.getChildAt(i).setOnTouchListener((v, event) -> true);
         }
     }
 
@@ -112,12 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else {
             this.backPressedToExitOnce = true;
             Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    backPressedToExitOnce = false;
-                }
-            }, 2000);
+            new Handler().postDelayed(() -> backPressedToExitOnce = false, 2000);
         }
     }
 }

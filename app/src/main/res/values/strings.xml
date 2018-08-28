@@ -11,21 +11,28 @@
     <string name="dialog_button_confirm_no">No</string>
     <string name="dialog_button_confirm_yes">Yes</string>
     <string name="dialog_button_close">Close</string>
+    <string name="log_out">Are you want to log out?</string>
     <!--End Dialog Message-->
 
     <!--Login-->
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="error_login_user">Enter your username</string>
-    <string name="error_login_password">Enter your password</string>
+    <string name="error_login_password">Enter your extension</string>
     <string name="error_login_short_password">Password must be at least 8 characters</string>
     <string name="error_login_fail">Username or Password invalid! Please try again.</string>
+    <string name="login_button">Log in</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_user_name">Forgot Username?</string>
+    <string name="forgot_password">Forgot Password?</string>
     <!--End Login-->
 
     <!--Welcome-->
     <string name="welcome">Welcome Screen</string>
     <string name="button_next">Next</string>
     <string name="button_back">Back</string>
+    <string name="button_create">Create</string>
+    <string name="button_schedule">Schedules</string>
     <!--End Welcome-->
 
     <!--Loan Tab-->
@@ -52,7 +59,7 @@
     <string name="personal_children"># of Childrens</string>
     <string name="personal_date">Choose your date</string>
     <!--End Personal Tab-->
-    
+
     <!--Contact Tab-->
     <string name="contact_details">Contact Details</string>
     <string name="contact_permanent">Permanent Addr.</string>
@@ -97,7 +104,64 @@
     <string name="error_empty_editext">Please enter an empty</string>
     <string name="error_empty_date">Please choose your date</string>
     <string name="error_checkbox">Please confirm your checkbox</string>
+    <string name="error_check_email">Email isn't avalid</string>
+    <string name="error_post_data_basic_fail">Post data failed</string>
     <!--End Error-->
 
     <string name="take_picture">Take picture</string>
+
+    <!--Schedules-->
+    <string name="schedules_title">List of Cases</string>
+    <string name="schedules_summary">Summary</string>
+    <string name="schedules_waiting">Waiting (%1$s)</string>
+    <string name="schedules_progress">Progress (%1$s)</string>
+    <string name="schedules_done">Done (%1$s)</string>
+    <string name="schudules_more">Assign more</string>
+    <!--End Schedules-->
+
+    <!--Detail Schedules-->
+    //Basic Info
+    <string name="detail_schedules_name">Name</string>
+    <string name="detail_schedules_email">Email</string>
+    <string name="detail_schedules_phone">Phone number</string>
+    <string name="detail_schedules_birth">Date of birth</string>
+    <string name="detail_schedules_address">Address</string>
+    <string name="detail_schedules_button_conduct">Conduct</string>
+    <string name="detail_schedules_button_later">Later</string>
+
+    //Detail Info
+    <string name="detail_schedules_id_card">ID Card</string>
+    <string name="detail_schedules_date_of_issue">Date of Issue</string>
+    <string name="detail_schedules_place_of_issue">Place of Issue</string>
+    <string name="detail_schedules_nationality">Nationality</string>
+    <string name="detail_schedules_residence_status">Residence status</string>
+    <string name="detail_schedules_marial_status">Marial status</string>
+    <string name="detail_schedules_ocupation">Occupation</string>
+    <string name="detail_schedules_industry">Industry</string>
+    <string name="detail_schedules_position">Position</string>
+    <string name="detail_schedules_monthly_income">Monthly Income</string>
+    <string name="detail_schedules_button_continue">Continue</string>
+    <string name="detail_schedules_button_cancel">Cancel</string>
+    <string name="dialog_messages_cancel">If you choose yes, you must to do it again.</string>
+
+    //Image
+    <string name="detail_schedules_electric">Electric Bill</string>
+    <string name="detail_schedules_water">Water Bill</string>
+    <string name="detail_schedules_number">Number Of Inhabitants</string>
+    <string name="detail_schedules_land">Land Certificate</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+    <string name="schedules_user_info">User Info</string>
+    <string name="schedules_change_password">Change Password</string>
+    <string name="schedules_logout">Log out</string>
+    <string name="detail_schedules_button_finish">Finish</string>
+    <!--End Detail Schedules-->
+
 </resources>

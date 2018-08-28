@@ -97,7 +97,7 @@
             android:text="@string/button_back" />
 
         <Button
-            android:id="@+id/btn_next_loan"
+            android:id="@+id/btn_next_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

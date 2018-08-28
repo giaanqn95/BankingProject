@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_padding_10dp">
+
+    <TextView
+        android:id="@+id/tv_title_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/margin_padding_30dp"
+        android:gravity="center"
+        android:text="Trần Đỗ Gia Ân"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/margin_padding_15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_detail_avatar"
+        android:layout_width="@dimen/margin_padding_200dp"
+        android:layout_height="@dimen/margin_padding_70dp"
+        android:layout_marginTop="@dimen/margin_padding_20dp"
+        android:background="@drawable/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_name" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ct_basic_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_padding_20dp"
+        android:paddingLeft="@dimen/margin_padding_20dp"
+        android:paddingRight="@dimen/margin_padding_20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_detail_avatar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/tv_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_schedules_name"
+            android:textColor="@color/blue_500"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_detail_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_padding_40dp"
+            android:layout_marginTop="@dimen/margin_padding_05dp"
+            android:background="@drawable/background_border_editext_2"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:text="Trần Đỗ Gia Ân"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_name" />
+
+        <TextView
+            android:id="@+id/tv_detail_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_email"
+            android:textColor="@color/blue_500"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_name" />
+
+        <EditText
+            android:id="@+id/et_detail_email"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_padding_40dp"
+            android:layout_marginTop="@dimen/margin_padding_05dp"
+            android:background="@drawable/background_border_editext_2"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:text="antran@yopmail.com"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_email" />
+
+        <TextView
+            android:id="@+id/tv_detail_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_phone"
+            android:textColor="@color/blue_500"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_email" />
+
+        <EditText
+            android:id="@+id/et_detail_phone"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_padding_40dp"
+            android:layout_marginTop="@dimen/margin_padding_05dp"
+            android:background="@drawable/background_border_editext_2"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:text="0901169215"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_phone" />
+
+        <TextView
+            android:id="@+id/tv_detail_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_birth"
+            android:textColor="@color/blue_500"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_phone" />
+
+        <TextView
+            android:id="@+id/et_detail_birth"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_padding_40dp"
+            android:layout_marginTop="@dimen/margin_padding_05dp"
+            android:background="@drawable/background_border_editext_2"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:text="12/02/1995"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_birth" />
+
+        <TextView
+            android:id="@+id/tv_detail_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_address"
+            android:textColor="@color/blue_500"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_birth" />
+
+        <EditText
+            android:id="@+id/et_detail_address"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_padding_40dp"
+            android:layout_marginTop="@dimen/margin_padding_05dp"
+            android:background="@drawable/background_border_editext_2"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:text="86 Trần Hưng Đạo"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_address" />
+
+        <Button
+            android:id="@+id/btn_conduct"
+            android:layout_width="@dimen/margin_padding_150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_25dp"
+            android:background="@drawable/background_border_button"
+            android:text="@string/detail_schedules_button_conduct"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btn_later"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_address" />
+
+        <Button
+            android:id="@+id/btn_later"
+            android:layout_width="@dimen/margin_padding_150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_25dp"
+            android:background="@drawable/background_border_button_2"
+            android:text="@string/detail_schedules_button_later"
+            android:textColor="@color/blue_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_conduct"
+            app:layout_constraintTop_toBottomOf="@id/et_detail_address" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ct_detail_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_padding_20dp"
+        android:paddingLeft="@dimen/margin_padding_20dp"
+        android:paddingRight="@dimen/margin_padding_20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_detail_avatar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_detail_id_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_schedules_id_card"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_detail_id_card"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_id_card" />
+
+                <TextView
+                    android:id="@+id/tv_detail_date_of_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_date_of_issue"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_id_card" />
+
+                <TextView
+                    android:id="@+id/et_detail_date_of_issue"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_date_of_issue" />
+
+                <TextView
+                    android:id="@+id/tv_detail_place_of_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_place_of_issue"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_date_of_issue" />
+
+                <EditText
+                    android:id="@+id/et_detail_place_of_issue"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_place_of_issue" />
+
+                <TextView
+                    android:id="@+id/tv_detail_nationality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_nationality"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_place_of_issue" />
+
+                <EditText
+                    android:id="@+id/et_detail_nationality"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:gravity="center_vertical"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_nationality" />
+
+                <TextView
+                    android:id="@+id/tv_detail_residence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_residence_status"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_nationality" />
+
+                <EditText
+                    android:id="@+id/et_detail_residence"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_residence" />
+
+                <TextView
+                    android:id="@+id/tv_detail_marial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_marial_status"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_residence" />
+
+                <EditText
+                    android:id="@+id/et_detail_marial"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_marial" />
+
+                <TextView
+                    android:id="@+id/tv_detail_occupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_ocupation"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_marial" />
+
+                <EditText
+                    android:id="@+id/et_detail_occupation"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_occupation" />
+
+                <TextView
+                    android:id="@+id/tv_detail_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_industry"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_occupation" />
+
+                <EditText
+                    android:id="@+id/et_detail_industry"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_industry" />
+
+                <TextView
+                    android:id="@+id/tv_detail_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_position"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_industry" />
+
+                <EditText
+                    android:id="@+id/et_detail_position"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_position" />
+
+                <TextView
+                    android:id="@+id/tv_detail_monthly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:text="@string/detail_schedules_monthly_income"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_position" />
+
+                <EditText
+                    android:id="@+id/et_detail_monthly"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_padding_40dp"
+                    android:layout_marginTop="@dimen/margin_padding_05dp"
+                    android:background="@drawable/background_border_editext_2"
+                    android:ellipsize="end"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_padding_10dp"
+                    android:textColor="@color/blue_500"
+                    android:textSize="@dimen/margin_padding_15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_monthly" />
+
+                <Button
+                    android:id="@+id/btn_continue"
+                    android:layout_width="@dimen/margin_padding_150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_25dp"
+                    android:background="@drawable/background_border_button_grey"
+                    android:text="@string/detail_schedules_button_continue"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_monthly" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="@dimen/margin_padding_150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_padding_25dp"
+                    android:background="@drawable/background_border_button_2"
+                    android:text="@string/detail_schedules_button_cancel"
+                    android:textColor="@color/blue_500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_continue"
+                    app:layout_constraintTop_toBottomOf="@id/et_detail_monthly" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ct_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_padding_20dp"
+        android:paddingLeft="@dimen/margin_padding_20dp"
+        android:paddingRight="@dimen/margin_padding_20dp"
+        android:paddingTop="@dimen/margin_padding_40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_detail_avatar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/tv_electric"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_padding_50dp"
+            android:layout_marginTop="@dimen/margin_padding_40dp"
+            android:background="@drawable/background_border_button_grey"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_electric"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_electric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_padding_20dp"
+            android:paddingTop="@dimen/margin_padding_10dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_water"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_padding_50dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button_grey"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_water"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_electric" />
+
+        <ImageView
+            android:id="@+id/iv_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_padding_20dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:paddingTop="@dimen/margin_padding_10dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_electric" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_padding_50dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button_grey"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_number"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_water" />
+
+        <ImageView
+            android:id="@+id/iv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_padding_20dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:paddingTop="@dimen/margin_padding_10dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_water" />
+
+        <TextView
+            android:id="@+id/tv_land"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_padding_50dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button_grey"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin_padding_10dp"
+            android:text="@string/detail_schedules_land"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_number" />
+
+        <ImageView
+            android:id="@+id/iv_land"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_padding_20dp"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:paddingTop="@dimen/margin_padding_10dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_number" />
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="@dimen/margin_padding_150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_35dp"
+            android:background="@drawable/background_border_button"
+            android:text="@string/detail_schedules_button_finish"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel_image"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_land" />
+
+        <Button
+            android:id="@+id/btn_cancel_image"
+            android:layout_width="@dimen/margin_padding_150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_35dp"
+            android:background="@drawable/background_border_button_2"
+            android:text="@string/detail_schedules_button_cancel"
+            android:textColor="@color/blue_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_finish"
+            app:layout_constraintTop_toBottomOf="@id/tv_land" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

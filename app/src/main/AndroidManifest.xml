@@ -12,9 +12,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature android:name="android.hardware.camera2.full" />
 
@@ -34,40 +33,40 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-
-            </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
 
         <activity
             android:name=".module.main.MainActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
-
-        <activity android:name=".module.login.LoginActivity">
-
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".module.introduce.IntroduceActivity"
-            android:screenOrientation="landscape">
+            android:name=".module.login.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".module.introduce.IntroduceActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <service android:name=".components.alarm_notification.SchedulingService" />
+        <!-- <service android:name=".components.alarm_notification.SchedulingService" /> -->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCkrIBetGMldShRuuf84sIVlAcZze0c94A" />
+
         <activity
             android:name=".module.upload.view.UploadActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".module.schedules.SchedulesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.detail_schedules.DetailSchedulesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

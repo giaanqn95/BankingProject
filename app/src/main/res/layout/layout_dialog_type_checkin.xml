@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:id="@+id/dialog_check">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_200"
+        android:padding="@dimen/margin_padding_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please choose check-in channel"
+            android:textColor="@color/blue_500"
+            android:textSize="@dimen/margin_padding_15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_location"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button"
+            android:text="Location"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btn_otp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_otp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button_2"
+            android:text="OTP"
+            android:textColor="@color/blue_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_location"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <Button
+            android:id="@+id/btn_check_in"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button"
+            android:text="Check-in"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/btn_not_yet"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_not_yet"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_20dp"
+            android:background="@drawable/background_border_button_2"
+            android:text="Not yet"
+            android:textColor="@color/blue_500"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_check_in"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

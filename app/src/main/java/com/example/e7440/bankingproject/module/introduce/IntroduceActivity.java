@@ -18,6 +18,7 @@ import com.example.e7440.bankingproject.components.AlarmUtils;
 import com.example.e7440.bankingproject.components.GooglePlaceAPI;
 import com.example.e7440.bankingproject.components.SessionManagerUser;
 import com.example.e7440.bankingproject.components.TimeHelper;
+import com.example.e7440.bankingproject.components.message_dialog.DialogResultItem;
 import com.example.e7440.bankingproject.module.base.BaseActivity;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.config.ConfigGeneral;
@@ -25,6 +26,7 @@ import com.example.e7440.bankingproject.module.config.ConfigPresenterImpl;
 import com.example.e7440.bankingproject.module.login.LoginActivity;
 import com.example.e7440.bankingproject.module.main.MainActivity;
 import com.example.e7440.bankingproject.module.model.Tab;
+import com.example.e7440.bankingproject.module.schedules.SchedulesActivity;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -40,20 +42,27 @@ import butterknife.ButterKnife;
  */
 
 public class IntroduceActivity extends BaseActivity implements View.OnClickListener, ConfigGeneral.ConfigView, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-
+    @Nullable
     @BindView(R.id.btn_next)
     Button mButtonNext;
+    @Nullable
     @BindView(R.id.btn_logout)
     Button mButtonLogout;
+    @Nullable
+    @BindView(R.id.btn_schedules)
+    Button mButtonSchedules;
+    @Nullable
     @BindView(R.id.tv_welcome)
     TextView mTextView;
+    @Nullable
     @BindView(R.id.tv_datetime)
     TextView mTextViewDateTime;
 
     private ConfigPresenterImpl mConfigPresenter;
     private Double lat, log;
 
-    private static final int REQUEST_CODE = 1002, CHOOSE_PLACE = 101;
+    private static final int REQUEST_CODE = 1002;
+    public static final int CHOOSE_PLACE = 101;
     private static final String[] PERMISSIONS_LIST = {
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -76,7 +85,6 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         init();
         verifyPermission();
         String imei = getUniqueIMEIId(this);
-
         Log.d("CCCCC", imei);
     }
 
@@ -87,6 +95,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         mButtonNext.setOnClickListener(this);
         mTextView.setOnClickListener(this);
         mTextViewDateTime.setOnClickListener(this);
+        mButtonSchedules.setOnClickListener(this);
     }
 
     @Override
@@ -98,10 +107,7 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
                 break;
             }
             case R.id.btn_logout: {
-                SessionManagerUser.getInstance().logoutUser();
-                Intent intent = new Intent(IntroduceActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                showDialogYesNo(DIALOG_YESNO, getResources().getString(R.string.log_out));
                 break;
             }
             case R.id.tv_welcome: {
@@ -111,6 +117,11 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
             }
             case R.id.tv_datetime: {
                 showDate();
+                break;
+            }
+            case R.id.btn_schedules: {
+                Intent intent = new Intent(IntroduceActivity.this, SchedulesActivity.class);
+                startActivity(intent);
                 break;
             }
             default:
@@ -213,5 +224,27 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         String timeShow = date + timeSh;
         AlarmUtils.create(this);
         mTextViewDateTime.setText(timeShow);
+    }
+
+    @Override
+    public void onClickDialog(DialogResultItem dialogResultItem) {
+        super.onClickDialog(dialogResultItem);
+        switch (dialogResultItem.getDialogId()) {
+            case DIALOG_YESNO: {
+                switch (dialogResultItem.getResultMessageDialog()) {
+                    case MESSAGEDIALOG_BUTTON_YES: {
+                        Intent intent = new Intent(this, LoginActivity.class);
+                        startActivity(intent);
+                        SessionManagerUser.getInstance().logoutUser();
+                        finish();
+                        break;
+                    }
+                    case MESSAGEDIALOG_BUTTON_NO: {
+                        mMessageDialogManger.onDimiss();
+                    }
+                }
+                break;
+            }
+        }
     }
 }

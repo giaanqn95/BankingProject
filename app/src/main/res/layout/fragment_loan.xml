@@ -46,7 +46,7 @@
                 android:layout_marginLeft="@dimen/margin_padding_10dp"
                 android:layout_marginTop="@dimen/margin_padding_05dp"
                 android:layout_toEndOf="@+id/textv_loan_type"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:drawableEnd="@drawable/ic_down_2"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />
@@ -75,7 +75,7 @@
                 android:layout_height="@dimen/margin_padding_20dp"
                 android:layout_marginLeft="@dimen/margin_padding_12dp"
                 android:layout_toEndOf="@+id/tv_loan_amount"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:inputType="number"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />
@@ -102,7 +102,7 @@
                 android:layout_height="@dimen/margin_padding_20dp"
                 android:layout_marginLeft="@dimen/margin_padding_12dp"
                 android:layout_toEndOf="@+id/tv_loan_tenure"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:drawableEnd="@drawable/ic_down_2"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />
@@ -129,7 +129,7 @@
                 android:layout_height="@dimen/margin_padding_20dp"
                 android:layout_marginLeft="@dimen/margin_padding_12dp"
                 android:layout_toEndOf="@+id/textv_loan_purpose"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:drawableEnd="@drawable/ic_down_2"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />
@@ -156,7 +156,7 @@
                 android:layout_height="@dimen/margin_padding_20dp"
                 android:layout_marginLeft="@dimen/margin_padding_14dp"
                 android:layout_toEndOf="@+id/tv_max_interset"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:inputType="number"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />
@@ -195,7 +195,7 @@
                 android:layout_height="@dimen/margin_padding_20dp"
                 android:layout_marginLeft="@dimen/margin_padding_14dp"
                 android:layout_toEndOf="@+id/tv_monthly_payment"
-                android:background="@drawable/background_editext"
+                android:background="@drawable/background_border_editext"
                 android:inputType="number"
                 android:paddingLeft="@dimen/margin_padding_05dp"
                 android:textSize="@dimen/margin_padding_15dp" />

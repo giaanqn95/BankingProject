@@ -2,7 +2,6 @@ package com.example.e7440.bankingproject.module.upload.view;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaScannerConnection;
@@ -28,6 +27,9 @@ import android.widget.Toast;
 
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.message_dialog.DialogResultItem;
+import com.example.e7440.bankingproject.connect_api.config.ApiClientDiff;
+import com.example.e7440.bankingproject.connect_api.config.ApiInterfaceDiff;
+import com.example.e7440.bankingproject.connect_api.responses.ResponseApi;
 import com.example.e7440.bankingproject.module.base.BaseActivity;
 import com.example.e7440.bankingproject.module.model.Image;
 import com.example.e7440.bankingproject.module.upload.adapter.ImageAdapter;
@@ -35,15 +37,26 @@ import com.example.e7440.bankingproject.module.upload.adapter.StartSnapHelper;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
 
@@ -57,10 +70,13 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
     ImageView mImageView_Test;
     @BindView(R.id.rv_upload)
     RecyclerView mRecyclerView;
+    @BindView(R.id.btn_next_upload)
+    Button mButtonUpload;
 
     private Image image;
     private List<Image> imageList;
     private ImageAdapter imageAdapter;
+    private ResponseApi mResponseApi;
 
     private static final int CHOOSE_PLACES = 120,
             DIALOG_SHOW_IMAGE = 130,
@@ -75,23 +91,43 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
     private String GALLERY_LOCATION = "image gallery";
     private String mImageFileLocation = "";
     private Double mLat, mLng;
+    private MultipartBody.Part part;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         init();
         getUniqueIMEIId(this);
         adapterClick();
         String imei = getUniqueIMEIId(this);
-        Log.d("AAAAA", imei);
+        Log.d("IMEI", imei);
         Log.d("JSONDATA", dataJSON);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(ResponseApi responseApi) {
+        mResponseApi = responseApi;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        removeAll();
     }
 
     private void init() {
         mButtonBack.setOnClickListener(this);
         mImageView.setOnClickListener(this);
+        mButtonUpload.setOnClickListener(this);
         imageList = new ArrayList<>();
         imageAdapter = new ImageAdapter(this, imageList);
         mRecyclerView.setLayoutManager(new GridLayoutManager(UploadActivity.this, 3));
@@ -136,18 +172,63 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
                 imagePicker();
                 break;
             }
+            case R.id.btn_next_upload: {
+                uploadImage();
+                break;
+            }
         }
+    }
+
+    public void uploadImage() {
+        Collections.sort(imageList);
+        for (Image image : imageList) {
+            new Thread(() -> {
+                try {
+                    File file = new File(image.getImage());
+                    part = MultipartBody.Part.createFormData("files[]", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                    callApiPost(part, image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+
+    public void removeAll(){
+        for (int i = 0; i < imageList.size(); i++) {
+            deleteImage(imageList.get(i).getImage());
+        }
+        imageList.clear();
+        imageAdapter.notifyDataSetChanged();
+    }
+
+    public void callApiPost(MultipartBody.Part image, Image imageFile) {
+        RequestBody requestBodyKey = RequestBody.create(MediaType.parse("text/plain"), mResponseApi.getApiKey());
+        ApiInterfaceDiff apiInterfaceDiff = ApiClientDiff.getRetrofit().create(ApiInterfaceDiff.class);
+        apiInterfaceDiff.postImage(image, requestBodyKey).enqueue(new Callback<ResponseApi>() {
+            @Override
+            public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Success:", "Completed");
+                    deleteImage(imageFile.getImage());
+                    imageList.remove(imageFile);
+                    imageAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseApi> call, Throwable t) {
+                Log.d("Failure:", t.getMessage());
+            }
+        });
     }
 
     //Create dialog
     public void imagePicker() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getResources().getString(R.string.register_choose_image)).setItems(R.array.register_choose_photo, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                if (i == 0) {
-                    takePhoto();
-                }
+        builder.setTitle(getResources().getString(R.string.register_choose_image)).setItems(R.array.register_choose_photo, (dialog, i) -> {
+            if (i == 0) {
+                takePhoto();
             }
         });
         builder.create().show();
@@ -166,7 +247,8 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
             }
         } else if (requestCode == ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
             //Add image into list after capture
-            image = new Image(mImageFileLocation);
+            int size = mImageFileLocation.length();
+            image = new Image(mImageFileLocation, size);
             imageList.add(image);
             imageAdapter.notifyDataSetChanged();
         }
@@ -182,6 +264,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
             }
         }
     }
+
 
     public static String getUniqueIMEIId(Context context) {
         try {
@@ -302,18 +385,11 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
         } else {
             this.backPressedToExitOnce = true;
             Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    backPressedToExitOnce = false;
-                }
-            }, 2000);
+            new Handler().postDelayed(() -> backPressedToExitOnce = false, 2000);
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }, 1000);
+//        new Handler().postDelayed(() -> {
+//
+//        }, 1000);
     }
+
 }

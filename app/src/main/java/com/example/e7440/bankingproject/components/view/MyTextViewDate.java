@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
@@ -48,12 +47,7 @@ public class MyTextViewDate extends LinearLayout{
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 //        mDatePickerDialog.setTitle("Please Choose The Day Of Your Last Pay");
 
-        tvDate.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDatePickerDialog.show();
-            }
-        });
+        tvDate.setOnClickListener(v -> mDatePickerDialog.show());
 
         myTextView = new MyTextView(ctx, label, false);
         this.addView(myTextView);

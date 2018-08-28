@@ -17,6 +17,9 @@ import com.example.e7440.bankingproject.components.view.MyEditText;
 import com.example.e7440.bankingproject.components.view.MySpinner;
 import com.example.e7440.bankingproject.components.view.MyTextView;
 import com.example.e7440.bankingproject.components.view.MyTextViewDate;
+import com.example.e7440.bankingproject.connect_api.config.ApiClientDiff;
+import com.example.e7440.bankingproject.connect_api.config.ApiInterfaceDiff;
+import com.example.e7440.bankingproject.connect_api.responses.ResponseApi;
 import com.example.e7440.bankingproject.module.base.BaseFragment;
 import com.example.e7440.bankingproject.module.config.Config;
 import com.example.e7440.bankingproject.module.main.MainActivity;
@@ -27,16 +30,26 @@ import com.example.e7440.bankingproject.module.tab.employment.presenter.Employme
 import com.example.e7440.bankingproject.module.tab.loan.view.FragmentLoan;
 import com.example.e7440.bankingproject.module.tab.personal.view.FragmentPersonal;
 import com.example.e7440.bankingproject.module.upload.view.UploadActivity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import static com.example.e7440.bankingproject.components.view.MyEditText.isEmailValid;
 import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
+import static com.example.e7440.bankingproject.module.tab.loan.view.FragmentLoan.jsonObjectToTal;
 
 /**
  * Created by E7440 on 6/14/2018.
@@ -52,7 +65,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     LinearLayout mLinearLayout;
 
     private List<DetailTab> mDetailTabs;
-    public static final int DIALOG_YESNO = 401;
+    public static final int DIALOG_YESNO = 401, DIALOG_SUCCESS = 402;
 
     private String url;
     private EmploymentPresenterImpl mEmploymentPresenter;
@@ -63,6 +76,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     private List<MySpinner> mySpinners = new ArrayList<MySpinner>();
     String data;
     String nameTab;
+    private ResponseApi mResponseApi;
 
     public FragmentEmployment() {
     }
@@ -116,6 +130,7 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
                     showDialogError(R.string.error_checkbox);
                     return;
                 }
+
                 //If done, show dialog yesno with message
                 showDialogYesNo(DIALOG_YESNO, getResources().getString(R.string.confirm));
                 break;
@@ -272,83 +287,99 @@ public class FragmentEmployment extends BaseFragment implements EmploymentGenera
     }
 
     private void addData() {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = null;
+        JSONObject jsonObject = new JSONObject();
         String[] stringsEditText = new String[myEditTexts.size()];
         String[] stringsSpinner = new String[mySpinners.size()];
         String[] stringTextView = new String[myTextViewDates.size()];
         String[] stringsCheckbox = new String[myCheckBoxes.size()];
         for (int i = 0; i < myEditTexts.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 if (!myEditTexts.get(i).getValue().toString().equals("")) {
                     String value = stringsEditText[i] = myEditTexts.get(i).getValue().toString();
                     String name = stringsEditText[i] = myEditTexts.get(i).getLabel().toString();
                     jsonObject.put(name, value);
+                    jsonObjectToTal.put(nameTab, jsonObject);
                 }
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < mySpinners.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsSpinner[i] = mySpinners.get(i).getValue().toString();
                 String name = stringsSpinner[i] = mySpinners.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myCheckBoxes.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsCheckbox[i] = myCheckBoxes.get(i).isChecked().toString();
                 String name = stringsCheckbox[i] = myCheckBoxes.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myTextViewDates.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringTextView[i] = myTextViewDates.get(i).getValue().toString();
                 String name = stringTextView[i] = myTextViewDates.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
-        data = String.valueOf(jsonArray);
-        dataJSON += nameTab + ":" + data + "\n";
-        Log.d("AAAAA", "" + data);
+
+        data = String.valueOf(jsonObjectToTal);
+        dataJSON += data + "\n";
     }
 
     @Override
     public void onClickDialog(DialogResultItem dialogResulltItem) {
         super.onClickDialog(dialogResulltItem);
-        switch (dialogResulltItem.getDialogId()){
-            case DIALOG_YESNO:{
-                switch (dialogResulltItem.getResultMessageDialog()){
-                    case MESSAGEDIALOG_BUTTON_YES:{
-                        FragmentLoan.addData();
-                        FragmentPersonal.addData();
-                        FragmentContact.addData();
+        switch (dialogResulltItem.getDialogId()) {
+            case DIALOG_YESNO: {
+                switch (dialogResulltItem.getResultMessageDialog()) {
+                    case MESSAGEDIALOG_BUTTON_YES: {
                         addData();
+                        postData();
                         Intent intent = new Intent(getActivity(), UploadActivity.class);
                         getActivity().startActivity(intent);
                         mMessageDialogManger.onDimiss();
                         getActivity().finish();
                         break;
                     }
-                    case MESSAGEDIALOG_BUTTON_NO:{
+                    case MESSAGEDIALOG_BUTTON_NO: {
                         mMessageDialogManger.onDimiss();
                         break;
                     }
                 }
                 break;
             }
+            case DIALOG_SUCCESS: {
+                break;
+            }
         }
+    }
+
+    public void postData() {
+        ApiInterfaceDiff apiInterfaceDiff = ApiClientDiff.getRetrofit().create(ApiInterfaceDiff.class);
+        Call<ResponseApi> dataResponseCall = apiInterfaceDiff.postData(jsonObjectToTal);
+        dataResponseCall.enqueue(new Callback<ResponseApi>() {
+            @Override
+            public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
+                if (response.isSuccessful()) {
+                    mResponseApi = response.body();
+                    Log.d("Post is", "Success");
+                    EventBus.getDefault().postSticky(mResponseApi);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseApi> call, Throwable t) {
+                Log.d("FailureOf", t.getMessage());
+            }
+        });
     }
 }

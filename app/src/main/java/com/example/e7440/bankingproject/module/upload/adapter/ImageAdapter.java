@@ -42,18 +42,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder
         final Image image = mImages.get(position);
         Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(image.getImage()),400,400);
         holder.mImageView.setImageBitmap(bitmap);
-        holder.mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClickImage(position);
-            }
-        });
-        holder.mImageViewRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClickListener(position);
-            }
-        });
+        holder.mImageView.setOnClickListener(v -> listener.onClickImage(position));
+        holder.mImageViewRemove.setOnClickListener(v -> listener.onClickListener(position));
     }
 
     @Override

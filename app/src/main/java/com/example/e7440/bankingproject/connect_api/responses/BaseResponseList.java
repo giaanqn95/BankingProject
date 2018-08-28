@@ -1,5 +1,6 @@
 package com.example.e7440.bankingproject.connect_api.responses;
 
+import com.example.e7440.bankingproject.module.model.Summary;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.List;
  */
 
 public class BaseResponseList<T> {
+    @SerializedName("summary")
+    private Summary summary;
     @SerializedName("status")
     private boolean success;
     @SerializedName("message")
@@ -35,5 +38,14 @@ public class BaseResponseList<T> {
 
     public List<T> getListData() {
         return listData;
+    }
+
+    public Summary getSummary() {
+        return summary;
+    }
+
+    public BaseResponseList<T> setSummary(Summary summary) {
+        this.summary = summary;
+        return this;
     }
 }

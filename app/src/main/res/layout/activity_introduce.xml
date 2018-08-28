@@ -1,43 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="60dp"
     android:paddingLeft="@dimen/margin_padding_50dp"
-    android:paddingRight="@dimen/margin_padding_50dp">
+    android:paddingRight="@dimen/margin_padding_50dp"
+    android:paddingTop="60dp">
 
-    <ImageView
+    <TextClock
+        android:id="@+id/time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/iv_avatar"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_padding_20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="40sp"
+        android:visibility="gone" />
 
     <TextView
+        android:id="@+id/tv_datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
+        android:layout_below="@+id/tv_welcome"
+        android:layout_marginTop="@dimen/margin_padding_10dp"
+        android:text="Click!!!"
+        android:textSize="@dimen/margin_padding_20dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/iv_avatar"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/font_108"
-        android:textColor="@color/black"
         android:layout_marginTop="@dimen/margin_padding_30dp"
-        android:id="@+id/tv_welcome"/>
+        android:text="@string/welcome"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_108" />
 
     <Button
+        android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_welcome"
-        android:text="@string/button_next"
-        android:layout_marginTop="@dimen/margin_padding_20dp"
-        android:id="@+id/btn_next"/>
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/margin_padding_20dp"
+        android:background="@drawable/background_border_button"
+        android:text="@string/button_create"
+        android:textColor="@color/white" />
 
     <Button
+        android:id="@+id/btn_schedules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_next"
-        android:text="Log Out"
+        android:background="@drawable/background_border_button_2"
+        android:text="@string/button_schedule"
+        android:textColor="@color/blue_500" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_schedules"
         android:layout_marginTop="@dimen/margin_padding_20dp"
-        android:id="@+id/btn_logout"/>
+        android:background="@drawable/background_border_button"
+        android:text="Log Out"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -22,9 +22,7 @@ import android.widget.Toast;
 import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.components.ShowItemAdapter;
 import com.example.e7440.bankingproject.module.model.Item;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -489,7 +487,7 @@ public class MessageDialogHelper {
 
 
     //region Ultils private
-    private static int getHeightToolbar(Context context) {
+    public static int getHeightToolbar(Context context) {
         int actionBarHeight = 0;
         TypedValue tv = new TypedValue();
         if (context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
@@ -498,7 +496,7 @@ public class MessageDialogHelper {
         return actionBarHeight;
     }
 
-    private static int getHeightStatusbar(Context context) {
+    public static int getHeightStatusbar(Context context) {
         int result = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {

@@ -58,7 +58,7 @@
                         android:layout_marginLeft="@dimen/margin_padding_10dp"
                         android:layout_marginTop="@dimen/margin_padding_05dp"
                         android:layout_toEndOf="@+id/tv_name"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:inputType="textPersonName"
                         android:paddingLeft="@dimen/margin_padding_05dp"
                         android:textSize="@dimen/margin_padding_15dp">
@@ -88,7 +88,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_12dp"
                         android:layout_toEndOf="@+id/textv_birth"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2" />
 
                 </RelativeLayout>
@@ -114,7 +114,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_12dp"
                         android:layout_toEndOf="@+id/tv_id"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:inputType="phone"
                         android:paddingLeft="@dimen/margin_padding_05dp"
                         android:textSize="@dimen/margin_padding_15dp" />
@@ -141,7 +141,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_12dp"
                         android:layout_toEndOf="@+id/textv_issue"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2"
                         android:paddingLeft="@dimen/margin_padding_10dp" />
                 </RelativeLayout>
@@ -167,7 +167,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_11dp"
                         android:layout_toEndOf="@+id/textv_education"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2"
                         android:paddingLeft="@dimen/margin_padding_10dp" />
 
@@ -194,7 +194,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_13dp"
                         android:layout_toEndOf="@+id/textv_sex"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2"
                         android:paddingLeft="@dimen/margin_padding_10dp" />
 
@@ -239,7 +239,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_17dp"
                         android:layout_toEndOf="@+id/textv_married"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2"
                         android:paddingLeft="@dimen/margin_padding_10dp" />
                 </RelativeLayout>
@@ -268,7 +268,7 @@
                         android:layout_height="@dimen/margin_padding_20dp"
                         android:layout_marginLeft="@dimen/margin_padding_17dp"
                         android:layout_toEndOf="@+id/textv_childern"
-                        android:background="@drawable/background_editext"
+                        android:background="@drawable/background_border_editext"
                         android:drawableEnd="@drawable/ic_down_2"
                         android:paddingLeft="@dimen/margin_padding_10dp" />
                 </RelativeLayout>

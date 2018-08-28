@@ -32,6 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 
 import static com.example.e7440.bankingproject.module.main.MainActivity.dataJSON;
+import static com.example.e7440.bankingproject.module.tab.loan.view.FragmentLoan.jsonObjectToTal;
 
 /**
  * Created by E7440 on 6/12/2018.
@@ -110,7 +111,7 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
                     showDialogError(R.string.error_checkbox);
                     return;
                 }
-//                addData();
+                addData();
                 ((MainActivity) getActivity()).setCurrentItem(2, true);
                 break;
             }
@@ -277,57 +278,50 @@ public class FragmentPersonal extends BaseFragment implements PersonalGeneral.Pe
     }
 
     public static void addData() {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = null;
+
+        JSONObject jsonObject = new JSONObject();
         String[] stringsEditText = new String[myEditTexts.size()];
         String[] stringsSpinner = new String[mySpinners.size()];
         String[] stringTextView = new String[myTextViewDates.size()];
         String[] stringsCheckbox = new String[myCheckBoxes.size()];
         for (int i = 0; i < myEditTexts.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 if (!myEditTexts.get(i).getValue().toString().equals("")) {
                     String value = stringsEditText[i] = myEditTexts.get(i).getValue().toString();
                     String name = stringsEditText[i] = myEditTexts.get(i).getLabel().toString();
                     jsonObject.put(name, value);
+                    jsonObjectToTal.put(nameTab, jsonObject);
                 }
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < mySpinners.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsSpinner[i] = mySpinners.get(i).getValue().toString();
                 String name = stringsSpinner[i] = mySpinners.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myCheckBoxes.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringsCheckbox[i] = myCheckBoxes.get(i).isChecked().toString();
                 String name = stringsCheckbox[i] = myCheckBoxes.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
         for (int i = 0; i < myTextViewDates.size(); i++) {
-            jsonObject = new JSONObject();
             try {
                 String value = stringTextView[i] = myTextViewDates.get(i).getValue().toString();
                 String name = stringTextView[i] = myTextViewDates.get(i).getLabel().toString();
                 jsonObject.put(name, value);
+                jsonObjectToTal.put(nameTab, jsonObject);
             } catch (Exception e) {
             }
-            jsonArray.put(jsonObject);
         }
-        data = String.valueOf(jsonArray);
-        dataJSON += nameTab + ":" + data + "," + "\n";
-        Log.d("AAAAA", "" + data);
-//        EventBus.getDefault().postSticky(data);
+        data = String.valueOf(jsonObjectToTal);
     }
 }

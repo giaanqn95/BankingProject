@@ -1,6 +1,5 @@
 package com.example.e7440.bankingproject.module.config;
 
-import com.example.e7440.bankingproject.R;
 import com.example.e7440.bankingproject.connect_api.api.ApiFunction;
 import com.example.e7440.bankingproject.connect_api.api.ApiStatus;
 import com.example.e7440.bankingproject.connect_api.responses.BaseResponseObject;
@@ -33,7 +32,7 @@ public class ConfigPresenterImpl extends BasePresenter<ConfigGeneral.ConfigView>
                         break;
                     }
                     case CALL_API_RESULT_TIMEOUT: {
-                        getmView().showDialogError(R.string.error_001);
+//                        getmView().showDialogError(R.string.error_001);
                         getmView().hideDialogLoading();
                         break;
                     }
